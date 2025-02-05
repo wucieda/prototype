@@ -1,0 +1,50 @@
+<div class="container">
+    <!-- Campos de búsqueda -->
+    <div class="filters">
+      <input
+        type="text"
+        placeholder="Buscar por nombre..."
+        [(ngModel)]="filters.nombre"
+        (input)="applyFilter()"
+      />
+      <input
+        type="text"
+        placeholder="Buscar por ciudad..."
+        [(ngModel)]="filters.ciudad"
+        (input)="applyFilter()"
+      />
+      <input
+        type="text"
+        placeholder="Buscar por país..."
+        [(ngModel)]="filters.pais"
+        (input)="applyFilter()"
+      />
+    </div>
+  
+    <!-- Tabla -->
+    <table>
+      <thead>
+        <tr>
+          <th (click)="sortColumn('nombre')">Nombre</th>
+          <th (click)="sortColumn('edad')">Edad</th>
+          <th (click)="sortColumn('ciudad')">Ciudad</th>
+          <th (click)="sortColumn('pais')">País</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filteredData">
+          <td>{{ item.nombre }}</td>
+          <td>{{ item.edad }}</td>
+          <td>{{ item.ciudad }}</td>
+          <td>{{ item.pais }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Paginación -->
+    <div class="pagination">
+      <button (click)="prevPage()" [disabled]="currentPage === 1">Anterior</button>
+      <span>Página {{ currentPage }} de {{ totalPages }}</span>
+      <button (click)="nextPage()" [disabled]="currentPage === totalPages">Siguiente</button>
+    </div>
+  </div>

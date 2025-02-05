@@ -1,0 +1,61 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  th {
+    cursor: pointer;
+    background-color: #f4f4f4;
+  }
+  
+  th:hover {
+    background-color: #ddd;
+  }
+  
+  button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .pagination {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .pagination button {
+    margin: 0 5px;
+  }
+  
+
+  /* Estilos para la tabla */
+.autoajustable {
+    width: auto; /* La tabla se ajusta al contenido */
+    border-collapse: collapse; /* Fusiona los bordes de las celdas */
+    margin: 20px auto; /* Centra la tabla en la página */
+    font-family: Arial, sans-serif;
+}
+
+.autoajustable th,
+.autoajustable td {
+    padding: 5px; /* Espaciado interno de las celdas */
+    border: 1px solid #ccc; /* Borde de las celdas */
+    text-align: left; /* Alineación del texto */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+.autoajustable th {
+    background-color: #f4f4f4; /* Color de fondo para las cabeceras */
+    font-weight: bold; /* Texto en negrita */
+}
+
+.autoajustable tbody tr:hover {
+    background-color: #f9f9f9; /* Efecto hover en las filas */
+}
