@@ -3,6 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductsDetailComponent } from './products-detail/products-detail.component';
 import { TablaComponent } from './tabla/tabla.component';
+import { EmployeeFormComponent } from './employee-form/employee-form.component';
 
 export const routes: Routes = [
     {
@@ -21,8 +22,14 @@ export const routes: Routes = [
       data: { breadcrumb: 'products/:id' }
     },
     {
-      path: 'tabla',
+      path: 'tablas',
       component: TablaComponent,
-      data: { breadcrumb: 'tabla' }
+      data: { breadcrumb: 'tablas' }
+    },
+    {
+      path: 'employee',
+      component: EmployeeFormComponent,
+      data: { breadcrumb: 'employee' }
     }
+
   ];

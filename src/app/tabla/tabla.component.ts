@@ -12,14 +12,33 @@ import { FormsModule } from '@angular/forms';
 export class TablaComponent {
   // Datos de ejemplo
   datos = [
-    { nombre: 'Juan Pérez', edad: 28, ciudad: 'Madrid', pais: 'España' },
-    { nombre: 'Ana Gómez', edad: 34, ciudad: 'Buenos Aires', pais: 'Argentina' },
-    { nombre: 'Carlos Ruiz', edad: 22, ciudad: 'Ciudad de México', pais: 'México' },
-    { nombre: 'Laura Fernández', edad: 30, ciudad: 'Bogotá', pais: 'Colombia' },
-    { nombre: 'Pedro Sánchez', edad: 40, ciudad: 'Lima', pais: 'Perú' },
-    { nombre: 'María López', edad: 25, ciudad: 'Santiago', pais: 'Chile' },
-    { nombre: 'José García', edad: 33, ciudad: 'Caracas', pais: 'Venezuela' },
-    { nombre: 'Lucía Martínez', edad: 29, ciudad: 'Quito', pais: 'Ecuador' },
+
+      { "nombre": "Juan Pérez", "edad": 28, "ciudad": "Madrid", "pais": "España" },
+      { "nombre": "Ana Gómez", "edad": 34, "ciudad": "Buenos Aires", "pais": "Argentina" },
+      { "nombre": "Carlos Ruiz", "edad": 22, "ciudad": "Ciudad de México", "pais": "México" },
+      { "nombre": "Laura Fernández", "edad": 30, "ciudad": "Bogotá", "pais": "Colombia" },
+      { "nombre": "Pedro Sánchez", "edad": 40, "ciudad": "Lima", "pais": "Perú" },
+      { "nombre": "María López", "edad": 25, "ciudad": "Santiago", "pais": "Chile" },
+      { "nombre": "José García", "edad": 33, "ciudad": "Caracas", "pais": "Venezuela" },
+      { "nombre": "Lucía Martínez", "edad": 29, "ciudad": "Quito", "pais": "Ecuador" },
+      { "nombre": "Fernando Torres", "edad": 35, "ciudad": "Barcelona", "pais": "España" },
+      { "nombre": "Gabriela Rojas", "edad": 27, "ciudad": "Rosario", "pais": "Argentina" },
+      { "nombre": "Daniel Herrera", "edad": 31, "ciudad": "Monterrey", "pais": "México" },
+      { "nombre": "Sofía Castro", "edad": 26, "ciudad": "Medellín", "pais": "Colombia" },
+      { "nombre": "Ricardo Morales", "edad": 45, "ciudad": "Arequipa", "pais": "Perú" },
+      { "nombre": "Camila Ramírez", "edad": 23, "ciudad": "Valparaíso", "pais": "Chile" },
+      { "nombre": "Manuel Díaz", "edad": 38, "ciudad": "Maracaibo", "pais": "Venezuela" },
+      { "nombre": "Elena Vargas", "edad": 32, "ciudad": "Guayaquil", "pais": "Ecuador" },
+      { "nombre": "Francisco Jiménez", "edad": 36, "ciudad": "Sevilla", "pais": "España" },
+      { "nombre": "Natalia Ortega", "edad": 24, "ciudad": "Córdoba", "pais": "Argentina" },
+      { "nombre": "Hugo Medina", "edad": 28, "ciudad": "Guadalajara", "pais": "México" },
+      { "nombre": "Valentina Reyes", "edad": 30, "ciudad": "Cali", "pais": "Colombia" },
+      { "nombre": "Javier Paredes", "edad": 42, "ciudad": "Trujillo", "pais": "Perú" },
+      { "nombre": "Martina Salazar", "edad": 29, "ciudad": "Concepción", "pais": "Chile" },
+      { "nombre": "Andrés Mendoza", "edad": 37, "ciudad": "Barquisimeto", "pais": "Venezuela" },
+      { "nombre": "Isabel Fuentes", "edad": 26, "ciudad": "Cuenca", "pais": "Ecuador" },
+      { "nombre": "Rodrigo Alonso", "edad": 33, "ciudad": "Zaragoza", "pais": "España" }
+  
   ];
 
   // Variables para filtrado y paginación
