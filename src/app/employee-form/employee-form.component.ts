@@ -17,7 +17,7 @@ export class EmployeeFormComponent {
     this.employeeForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
-      email: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required]],
       age: ['', [Validators.required, Validators.min(18), Validators.max(65)]],
       position: ['', Validators.required],
       department: ['', Validators.required],
@@ -27,7 +27,7 @@ export class EmployeeFormComponent {
         street: ['', Validators.required],
         city: ['', Validators.required],
         state: ['', Validators.required],
-        zip: ['', [Validators.required, Validators.pattern('^[0-9]{5}$')]]
+        zip: ['', [Validators.required]]
       })
     });
   }
