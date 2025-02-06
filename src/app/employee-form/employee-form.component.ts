@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-form',
   standalone: true,
-  imports:[CommonModule,FormsModule,ReactiveFormsModule ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   templateUrl: './employee-form.component.html',
   styleUrls: ['./employee-form.component.scss']
 })
@@ -38,5 +38,9 @@ export class EmployeeFormComponent {
     } else {
       console.log('Formulario no válido');
     }
+  }
+
+  onReset() {
+    this.employeeForm.reset();
   }
 }

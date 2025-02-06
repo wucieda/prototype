@@ -1,79 +1,84 @@
 <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-  <div class="form-container">
-    <!-- Información Personal -->
-    <div class="form-section">
-      <h3>Información Personal</h3>
-      <div class="form-group">
-        <label for="firstName">Nombre:</label>
-        <input id="firstName" formControlName="firstName">
-      </div>
+    <div class="form-container">
+        <!-- Información Personal -->
+        <div class="form-section">
+            <h3>Información Personal</h3>
+            <div class="form-group">
+                <label for="firstName">Nombre:</label>
+                <input id="firstName" formControlName="firstName">
+            </div>
 
-      <div class="form-group">
-        <label for="lastName">Apellido:</label>
-        <input id="lastName" formControlName="lastName">
-      </div>
+            <div class="form-group">
+                <label for="lastName">Apellido:</label>
+                <input id="lastName" formControlName="lastName">
+            </div>
 
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input id="email" formControlName="email" type="email">
-      </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input id="email" formControlName="email" type="email">
+            </div>
 
-      <div class="form-group">
-        <label for="age">Edad:</label>
-        <input id="age" formControlName="age" type="number">
-      </div>
+            <div class="form-group">
+                <label for="age">Edad:</label>
+                <input id="age" formControlName="age" type="number">
+            </div>
+        </div>
+
+        <!-- Detalles del Trabajo -->
+        <div class="form-section">
+            <h3>Detalles del Trabajo</h3>
+            <div class="form-group">
+                <label for="position">Puesto:</label>
+                <input id="position" formControlName="position">
+            </div>
+
+            <div class="form-group">
+                <label for="department">Departamento:</label>
+                <input id="department" formControlName="department">
+            </div>
+
+            <div class="form-group">
+                <label for="salary">Salario:</label>
+                <input id="salary" formControlName="salary" type="number">
+            </div>
+
+            <div class="form-group">
+                <label for="hireDate">Fecha de Contratación:</label>
+                <input id="hireDate" formControlName="hireDate" type="date">
+            </div>
+        </div>
+
+        <!-- Dirección -->
+        <div class="form-section">
+            <h3>Dirección</h3>
+            <div formGroupName="address">
+                <div class="form-group">
+                    <label for="street">Calle:</label>
+                    <input id="street" formControlName="street">
+                </div>
+
+                <div class="form-group">
+                    <label for="city">Ciudad:</label>
+                    <input id="city" formControlName="city">
+                </div>
+
+                <div class="form-group">
+                    <label for="state">Estado:</label>
+                    <input id="state" formControlName="state">
+                </div>
+
+                <div class="form-group">
+                    <label for="zip">Código Postal:</label>
+                    <input id="zip" formControlName="zip">
+                </div>
+            </div>
+        </div>
     </div>
 
-    <!-- Detalles del Trabajo -->
-    <div class="form-section">
-      <h3>Detalles del Trabajo</h3>
-      <div class="form-group">
-        <label for="position">Puesto:</label>
-        <input id="position" formControlName="position">
-      </div>
-
-      <div class="form-group">
-        <label for="department">Departamento:</label>
-        <input id="department" formControlName="department">
-      </div>
-
-      <div class="form-group">
-        <label for="salary">Salario:</label>
-        <input id="salary" formControlName="salary" type="number">
-      </div>
-
-      <div class="form-group">
-        <label for="hireDate">Fecha de Contratación:</label>
-        <input id="hireDate" formControlName="hireDate" type="date">
-      </div>
+    <div class="button-container">
+        <button type="submit" [disabled]="employeeForm.invalid">Enviar</button>
+        <button type="button" (click)="onReset()">Limpiar</button>
     </div>
 
-    <!-- Dirección -->
-    <div class="form-section">
-      <h3>Dirección</h3>
-      <div formGroupName="address">
-        <div class="form-group">
-          <label for="street">Calle:</label>
-          <input id="street" formControlName="street">
-        </div>
 
-        <div class="form-group">
-          <label for="city">Ciudad:</label>
-          <input id="city" formControlName="city">
-        </div>
-
-        <div class="form-group">
-          <label for="state">Estado:</label>
-          <input id="state" formControlName="state">
-        </div>
-
-        <div class="form-group">
-          <label for="zip">Código Postal:</label>
-          <input id="zip" formControlName="zip">
-        </div>
-      </div>
-    </div>
-  </div>
-
-    <button type="submit" [disabled]="employeeForm.invalid">Enviar</button>
 </form>
