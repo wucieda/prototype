@@ -1,0 +1,17 @@
+<div class="calendar">
+    <div class="calendar-header">
+      <span class="nav prev" (click)="changeMonth(-1)">&#9665;</span>
+      {{ currentDate | date:'MMMM yyyy' | uppercase }}
+      <span class="nav next" (click)="changeMonth(1)">&#9655;</span>
+    </div>
+    <div class="calendar-days">
+      <div class="day" *ngFor="let weekday of weekdays">{{ weekday }}</div>
+      <div class="day" 
+           *ngFor="let day of daysInMonth"
+           [class.selected]="day === selectedDay"
+           (click)="selectDay(day)">
+        {{ day || '' }}
+      </div>
+    </div>
+  </div>
+  

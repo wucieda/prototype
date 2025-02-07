@@ -4,6 +4,7 @@ import { ProductsComponent } from './products/products.component';
 import { ProductsDetailComponent } from './products-detail/products-detail.component';
 import { TablaComponent } from './tabla/tabla.component';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
+import { CalendarComponent } from './calendar/calendar.component';
 
 export const routes: Routes = [
     {
@@ -30,6 +31,11 @@ export const routes: Routes = [
       path: 'employee',
       component: EmployeeFormComponent,
       data: { breadcrumb: 'employee' }
+    },
+    {
+      path: 'calendar',
+      component: CalendarComponent,
+      data: { breadcrumb: 'calendar' }
     }
 
   ];
