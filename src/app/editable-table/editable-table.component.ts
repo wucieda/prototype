@@ -17,10 +17,11 @@ interface TableRow {
   imports: [FormsModule, CommonModule]
 })
 export class EditableTableComponent {
-  data: TableRow[] = [
+  initialData: TableRow[] = [
     { id: 1, name: 'Item 1', value: 'Value 1', status: 'unchanged' },
     { id: 2, name: 'Item 2', value: 'Value 2', status: 'unchanged' }
   ];
+  data: TableRow[] = JSON.parse(JSON.stringify(this.initialData));
 
   addRow() {
     //this.data.push({ name: '', value: '', status: 'new' });
@@ -47,5 +48,9 @@ export class EditableTableComponent {
     console.log('Deleting:', toDelete);
 
     this.data = this.data.filter(row => row.status !== 'deleted').map(row => ({ ...row, status: 'unchanged' }));
+  }
+
+  resetChanges() {
+    this.data = JSON.parse(JSON.stringify(this.initialData));
   }
 }
