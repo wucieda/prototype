@@ -95,6 +95,7 @@
         font-size: 18px;
         border: none;
         cursor: pointer;
+        user-select: none;
   
         &:hover {
           color: darkred;

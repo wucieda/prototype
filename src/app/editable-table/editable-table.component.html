@@ -20,7 +20,7 @@
             }">
                 <td><input type="text" [(ngModel)]="row.name" (input)="markModified(row)"></td>
                 <td><input type="text" [(ngModel)]="row.value" (input)="markModified(row)"></td>
-                <td><button class="delete-btn" (click)="markForDeletion(row)">Delete</button></td>
+                <td><span class="delete-btn" (click)="markForDeletion(row)" title="Delete">❌</span></td>
             </tr>
             }
         </tbody>
