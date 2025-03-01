@@ -23,7 +23,8 @@ export class EditableTableComponent {
   ];
 
   addRow() {
-    this.data.push({ name: '', value: '', status: 'new' });
+    //this.data.push({ name: '', value: '', status: 'new' });
+    this.data.push({ id: Date.now(), name: '', value: '', status: 'new' });
   }
 
   markModified(row: TableRow) {
