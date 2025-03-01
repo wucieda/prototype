@@ -22,6 +22,8 @@ export class EditableTableComponent {
     { id: 2, name: 'Item 2', value: 'Value 2', status: 'unchanged' }
   ];
   data: TableRow[] = JSON.parse(JSON.stringify(this.initialData));
+  notification: string | null = null;
+  notificationType: string = '';
 
   addRow() {
     //this.data.push({ name: '', value: '', status: 'new' });
@@ -48,9 +50,20 @@ export class EditableTableComponent {
     console.log('Deleting:', toDelete);
 
     this.data = this.data.filter(row => row.status !== 'deleted').map(row => ({ ...row, status: 'unchanged' }));
+    this.showNotification("Changes saved successfully!",'success');
   }
 
   resetChanges() {
     this.data = JSON.parse(JSON.stringify(this.initialData));
+    this.showNotification("Changes have been reset.",'info');
+  }
+
+  showNotification(message: string, type: 'success' | 'error' | 'info') {
+    this.notification = message;
+    this.notificationType = type;
+    setTimeout(() => {
+      this.notification = null;
+      this.notificationType = '';
+    }, 3000);
   }
 }

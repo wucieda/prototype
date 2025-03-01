@@ -27,3 +27,7 @@
         </tbody>
     </table>
 </div>
+
+<div *ngIf="notification" class="toast {{notificationType}}">
+    <span>{{ notification }}</span>
+  </div>
