@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-interface CalendarDay {
+export interface CalendarDay {
   date: number;
   fullDate: Date;
   isWeekend: boolean;
