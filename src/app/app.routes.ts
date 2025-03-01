@@ -5,6 +5,7 @@ import { ProductsDetailComponent } from './products-detail/products-detail.compo
 import { TablaComponent } from './tabla/tabla.component';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { CalendarComponent } from './calendar/calendar.component';
+import { Calendar2Component } from './calendar2/calendar2.component';
 
 export const routes: Routes = [
     {
@@ -36,6 +37,12 @@ export const routes: Routes = [
       path: 'calendar',
       component: CalendarComponent,
       data: { breadcrumb: 'calendar' }
+    },
+
+    {
+      path: 'calendar2',
+      component: Calendar2Component,
+      data: { breadcrumb: 'calendar2' }
     }
 
   ];

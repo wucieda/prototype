@@ -1,0 +1,127 @@
+/* Estilos generales del calendario */
+.calendar {
+    font-family: 'Arial', sans-serif;
+    width: 100%;
+    max-width: 800px; /* Ancho máximo del calendario */
+    margin: 0 auto;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    overflow: hidden;
+  }
+  
+  /* Estilo del encabezado del calendario */
+  .calendar-header {
+    text-align: center;
+    padding: 24px; /* Padding del encabezado */
+    background-color: #ef4f69; /* Color rojizo */
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .calendar-header h2 {
+    font-size: 32px; /* Tamaño de fuente del mes */
+    font-weight: bold;
+    color: #ffffff; /* Texto blanco para contrastar con el fondo rojizo */
+    margin: 0;
+  }
+  
+  .calendar-header h3 {
+    font-size: 24px; /* Tamaño de fuente del año */
+    color: #ffffff; /* Texto blanco para contrastar con el fondo rojizo */
+    margin: 0;
+  }
+  
+  /* Estilo de la navegación (flechas) */
+  .navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px; /* Margen inferior */
+  }
+  
+  .nav-arrow {
+    font-size: 36px; /* Tamaño de fuente de las flechas */
+    font-weight: bold;
+    color: #ffffff; /* Flechas blancas para contrastar con el fondo rojizo */
+    cursor: pointer;
+    user-select: none;
+  }
+  
+  .nav-arrow:hover {
+    color: #ffcccb; /* Color rosa claro al pasar el mouse */
+  }
+  
+  /* Estilo de la tabla del calendario */
+  .calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Fijamos el layout de la tabla */
+  }
+  
+  .calendar-table th,
+  .calendar-table td {
+    text-align: center;
+    padding: 12px; /* Padding de las celdas */
+    border: 1px solid #e0e0e0;
+    height: 80px; /* Altura fija para las celdas */
+    vertical-align: top; /* Alineamos el contenido en la parte superior */
+  }
+  
+  .calendar-table th {
+    background-color: #ffffff; /* Fondo blanco para los encabezados */
+    font-weight: bold;
+    color: #ef4f69; /* Color rojizo para los nombres de los días */
+    font-size: 18px; /* Tamaño de fuente de los días de la semana */
+  }
+  
+  .calendar-table td {
+    background-color: #ffffff;
+    color: #333333;
+    position: relative;
+    font-size: 18px; /* Tamaño de fuente de los días del mes */
+  }
+  
+  /* Estilo para los días del mes */
+  .calendar-table td:not(.empty) {
+    cursor: pointer;
+  }
+  
+  .calendar-table td:not(.empty):hover {
+    background-color: #f0f0f0;
+  }
+  
+  /* Estilo para los días fuera del mes actual */
+  .calendar-table td.empty {
+    background-color: #f9f9f9;
+    color: #cccccc;
+  }
+  
+  /* Estilo para el día actual */
+  .calendar-table td.today {
+    background-color: #e0f7fa;
+    font-weight: bold;
+  }
+  
+  /* Estilo para el número del día */
+  .day-number {
+    display: block;
+    font-size: 20px; /* Tamaño de fuente del número del día */
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 4px; /* Margen inferior para separar del evento */
+  }
+  
+  /* Estilo para los eventos */
+  .event {
+    font-size: 12px; /* Tamaño de fuente del evento */
+    color: #ffffff;
+    background-color: #ef4f69; /* Color rojizo para los eventos */
+    padding: 4px 8px; /* Padding del evento */
+    border-radius: 4px;
+    display: block; /* Mostrar como bloque para ocupar toda la celda */
+    white-space: normal; /* Permite que el texto se ajuste */
+    word-wrap: break-word; /* Asegura que el texto largo no desborde */
+    max-width: 100%; /* Aseguramos que no se desborde */
+    text-align: center; /* Centramos el texto del evento */
+  }

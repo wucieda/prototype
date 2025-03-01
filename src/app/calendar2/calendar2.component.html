@@ -1,0 +1,30 @@
+<div class="calendar">
+    <div class="calendar-header">
+      <div class="navigation">
+        <span class="nav-arrow" (click)="prevMonth()">‹</span>
+        <h2>{{ currentMonth }}</h2>
+        <h3>{{ currentYear }}</h3>
+        <span class="nav-arrow" (click)="nextMonth()">›</span>
+      </div>
+    </div>
+    <table class="calendar-table">
+      <thead>
+        <tr>
+          <th *ngFor="let day of weekDays">{{ day }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let week of weeks">
+          <td
+            *ngFor="let day of week"
+            [class.today]="isToday(day)"
+            [class.empty]="!day"
+            (click)="onDayClick(day)"
+          >
+            <span class="day-number">{{ day?.date }}</span>
+            <div *ngIf="getEvent(day)" class="event" [innerHTML]="getEvent(day)"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
