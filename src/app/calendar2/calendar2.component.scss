@@ -2,127 +2,221 @@
 .calendar {
     font-family: 'Arial', sans-serif;
     width: 100%;
-    max-width: 800px; /* Ancho máximo del calendario */
+    max-width: 800px;
+    /* Ancho máximo del calendario */
     margin: 0 auto;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
+    /* Fondo blanco (50%) */
     overflow: hidden;
-  }
-  
-  /* Estilo del encabezado del calendario */
-  .calendar-header {
-    text-align: center;
-    padding: 24px; /* Padding del encabezado */
-    background-color: #ef4f69; /* Color rojizo */
-    border-bottom: 1px solid #e0e0e0;
-  }
-  
-  .calendar-header h2 {
-    font-size: 32px; /* Tamaño de fuente del mes */
-    font-weight: bold;
-    color: #ffffff; /* Texto blanco para contrastar con el fondo rojizo */
-    margin: 0;
-  }
-  
-  .calendar-header h3 {
-    font-size: 24px; /* Tamaño de fuente del año */
-    color: #ffffff; /* Texto blanco para contrastar con el fondo rojizo */
-    margin: 0;
-  }
-  
-  /* Estilo de la navegación (flechas) */
-  .navigation {
+}
+
+/* Estilo de la sección de controles (botones y dropdown) */
+.controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px; /* Margen inferior */
-  }
-  
-  .nav-arrow {
-    font-size: 36px; /* Tamaño de fuente de las flechas */
+    padding: 16px;
+    background-color: #ffffff;
+    /* Fondo blanco (50%) */
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* Estilo de los botones */
+.btn {
+    padding: 8px 16px;
+    font-size: 14px;
     font-weight: bold;
-    color: #ffffff; /* Flechas blancas para contrastar con el fondo rojizo */
+    color:  #F45267;
+    /* Texto blanco */
+    background-color: #ffffff;
+    /* Rojo Santander (40%) */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 20px;
+    box-shadow: 0px 1px 3px #666666;
+}
+
+.btn:hover {
+    background-color: #cc0000;
+    color: #ffffff;
+    /* Rojo Santander más oscuro al pasar el mouse */
+}
+
+/* Estilo del dropdown */
+.period-dropdown {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000000;
+    /* Texto negro (5%) */
+    background-color: #ffffff;
+    /* Fondo blanco (50%) */
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.period-dropdown:hover {
+    border-color: #F45267;
+    /* Borde rojo Santander al pasar el mouse */
+}
+
+/* Estilo del encabezado del calendario */
+.calendar-header {
+    text-align: center;
+    padding: 24px;
+    /* Padding del encabezado */
+    background-color: #F45267;
+    /* Rojo Santander (40%) */
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.calendar-header h2 {
+    font-size: 32px;
+    /* Tamaño de fuente del mes */
+    font-weight: bold;
+    color: #ffffff;
+    /* Texto blanco para contrastar con el fondo rojo Santander */
+    margin: 0;
+}
+
+.calendar-header h3 {
+    font-size: 24px;
+    /* Tamaño de fuente del año */
+    color: #ffffff;
+    /* Texto blanco para contrastar con el fondo rojo Santander */
+    margin: 0;
+}
+
+/* Estilo de la navegación (flechas) */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    /* Margen inferior */
+}
+
+.nav-arrow {
+    font-size: 36px;
+    /* Tamaño de fuente de las flechas */
+    font-weight: bold;
+    color: #ffffff;
+    /* Flechas blancas para contrastar con el fondo rojo Santander */
     cursor: pointer;
     user-select: none;
-  }
-  
-  .nav-arrow:hover {
-    color: #ffcccb; /* Color rosa claro al pasar el mouse */
-  }
-  
-  /* Estilo de la tabla del calendario */
-  .calendar-table {
+}
+
+.nav-arrow:hover {
+    color: #ffcccc;
+    /* Rojo claro al pasar el mouse */
+}
+
+/* Estilo de la tabla del calendario */
+.calendar-table {
     width: 100%;
     border-collapse: collapse;
-    table-layout: fixed; /* Fijamos el layout de la tabla */
-  }
-  
-  .calendar-table th,
-  .calendar-table td {
+    table-layout: fixed;
+    /* Fijamos el layout de la tabla */
+}
+
+.calendar-table th,
+.calendar-table td {
     text-align: center;
-    padding: 12px; /* Padding de las celdas */
+    padding: 12px;
+    /* Padding de las celdas */
     border: 1px solid #e0e0e0;
-    height: 80px; /* Altura fija para las celdas */
-    vertical-align: top; /* Alineamos el contenido en la parte superior */
-  }
-  
-  .calendar-table th {
-    background-color: #ffffff; /* Fondo blanco para los encabezados */
+    height: 80px;
+    /* Altura fija para las celdas */
+    vertical-align: top;
+    /* Alineamos el contenido en la parte superior */
+}
+
+/* Estilo de la tabla del calendario */
+.calendar-table th {
+    background-color: #f8f7f7ee;
+    /* Fondo blanco (50%) */
     font-weight: bold;
-    color: #ef4f69; /* Color rojizo para los nombres de los días */
-    font-size: 18px; /* Tamaño de fuente de los días de la semana */
-  }
-  
-  .calendar-table td {
+    color: #F45267;
+    /* Gris más claro para los nombres de los días */
+    font-size: 18px;
+    /* Tamaño de fuente de los días de la semana */
+}
+
+.calendar-table td {
     background-color: #ffffff;
+    /* Fondo blanco (50%) */
     color: #333333;
+    /* Texto oscuro */
     position: relative;
-    font-size: 18px; /* Tamaño de fuente de los días del mes */
-  }
-  
-  /* Estilo para los días del mes */
-  .calendar-table td:not(.empty) {
+    font-size: 18px;
+    /* Tamaño de fuente de los días del mes */
+}
+
+/* Estilo para los días del mes */
+.calendar-table td:not(.empty) {
     cursor: pointer;
-  }
-  
-  .calendar-table td:not(.empty):hover {
-    background-color: #f0f0f0;
-  }
-  
-  /* Estilo para los días fuera del mes actual */
-  .calendar-table td.empty {
+}
+
+.calendar-table td:not(.empty):hover {
+    background-color: #deedf2;
+    /* Azul claro (5%) al pasar el mouse */
+}
+
+/* Estilo para los días fuera del mes actual */
+.calendar-table td.empty {
     background-color: #f9f9f9;
+    /* Fondo gris muy claro */
     color: #cccccc;
-  }
-  
-  /* Estilo para el día actual */
-  .calendar-table td.today {
-    background-color: #e0f7fa;
+    /* Texto gris claro */
+}
+
+/* Estilo para el día actual */
+.calendar-table td.today {
+    background-color: #F45267;
+    /* Rojo Santander (40%) para el día actual */
     font-weight: bold;
-  }
-  
-  /* Estilo para el número del día */
-  .day-number {
+    color: #ffffff;
+    /* Texto blanco */
+}
+
+/* Estilo para el número del día */
+.day-number {
     display: block;
-    font-size: 18px; /* Tamaño de fuente del número del día */
+    font-size: 20px;
+    /* Tamaño de fuente del número del día */
     font-weight: bold;
     color: #333333;
-    margin-bottom: 4px; /* Margen inferior para separar del evento */
+    /* Texto oscuro */
+    margin-bottom: 4px;
     text-align: left;
-  }
-  
-  /* Estilo para los eventos */
-  .event {
-    font-size: 12px; /* Tamaño de fuente del evento */
+    /* Margen inferior para separar del evento */
+}
+
+/* Estilo para los eventos */
+.event {
+    font-size: 12px;
+    /* Tamaño de fuente del evento */
     color: #ffffff;
-    background-color: #ef4f69; /* Color rojizo para los eventos */
-    padding: 2px 8px; /* Padding del evento */
+    /* Texto blanco */
+    background-color: #F45267;
+    /* Rojo Santander (40%) para los eventos */
+    padding: 4px 8px;
+    /* Padding del evento */
     border-radius: 4px;
-    display: block; /* Mostrar como bloque para ocupar toda la celda */
-    white-space: normal; /* Permite que el texto se ajuste */
-    word-wrap: break-word; /* Asegura que el texto largo no desborde */
-    max-width: 100%; /* Aseguramos que no se desborde */
-    text-align: center; /* Centramos el texto del evento */
-  }
+    display: block;
+    /* Mostrar como bloque para ocupar toda la celda */
+    white-space: normal;
+    /* Permite que el texto se ajuste */
+    word-wrap: break-word;
+    /* Asegura que el texto largo no desborde */
+    max-width: 100%;
+    /* Aseguramos que no se desborde */
+    text-align: center;
+    /* Centramos el texto del evento */
+}

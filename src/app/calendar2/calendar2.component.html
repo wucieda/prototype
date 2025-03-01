@@ -1,4 +1,20 @@
 <div class="calendar">
+    <!-- Nueva sección para botones y dropdown -->
+    <div class="controls">
+      <button class="btn sync-btn">Sincronizar</button>
+      <button class="btn open-btn">Abrir</button>
+      <button class="btn section-btn">Sección</button>
+      <button class="btn global-btn">Global</button>
+      <button class="btn load-btn">Cargar</button>
+      <select class="period-dropdown">
+        <option value="day">Día</option>
+        <option value="week">Semana</option>
+        <option value="month">Mes</option>
+        <option value="year">Año</option>
+      </select>
+    </div>
+  
+    <!-- Encabezado del calendario -->
     <div class="calendar-header">
       <div class="navigation">
         <span class="nav-arrow" (click)="prevMonth()">‹</span>
@@ -7,6 +23,8 @@
         <span class="nav-arrow" (click)="nextMonth()">›</span>
       </div>
     </div>
+  
+    <!-- Tabla del calendario -->
     <table class="calendar-table">
       <thead>
         <tr>
