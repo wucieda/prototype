@@ -106,10 +106,11 @@
   /* Estilo para el número del día */
   .day-number {
     display: block;
-    font-size: 20px; /* Tamaño de fuente del número del día */
+    font-size: 18px; /* Tamaño de fuente del número del día */
     font-weight: bold;
     color: #333333;
     margin-bottom: 4px; /* Margen inferior para separar del evento */
+    text-align: left;
   }
   
   /* Estilo para los eventos */
@@ -117,7 +118,7 @@
     font-size: 12px; /* Tamaño de fuente del evento */
     color: #ffffff;
     background-color: #ef4f69; /* Color rojizo para los eventos */
-    padding: 4px 8px; /* Padding del evento */
+    padding: 2px 8px; /* Padding del evento */
     border-radius: 4px;
     display: block; /* Mostrar como bloque para ocupar toda la celda */
     white-space: normal; /* Permite que el texto se ajuste */
