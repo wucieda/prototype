@@ -1,47 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+interface CalendarDay {
+  date: number;
+  fullDate: Date;
+  isWeekend: boolean;
+}
+
 @Component({
   selector: 'app-calendar2',
   imports: [CommonModule],
   templateUrl: './calendar2.component.html',
-  styleUrl: './calendar2.component.scss'
+  styleUrls: ['./calendar2.component.scss'] // Corrección aquí
 })
 export class Calendar2Component implements OnInit {
-  events: { [key: string]: string } = {};
-  
+  events: Map<string, string> = new Map();
   currentDate: Date = new Date();
   currentMonth: string = '';
   currentYear: string = '';
   weekDays: string[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-  weeks: any[][] = [];
+  weeks: (CalendarDay | null)[][] = [];
 
   ngOnInit(): void {
-    const date1 = this.formatDate(new Date(2025, 3, 5));
-    const date2 = this.formatDate(new Date(2025, 3, 10));
-    this.events[date1] = '<span>Evento Aleatorio 1</span>';
-    this.events[date2] = '<span>Evento Aleatorio 2</span>';
+    this.events.set(this.formatDate(new Date(2025, 3, 5)), '<span>Evento Aleatorio 1</span>');
+    this.events.set(this.formatDate(new Date(2025, 3, 10)), '<span>Evento Aleatorio 2</span>');
     this.updateCalendar();
   }
 
   updateCalendar(): void {
     this.currentMonth = this.getMonthName(this.currentDate.getMonth());
     this.currentYear = this.currentDate.getFullYear().toString();
-    this.weeks = this.generateWeeks(
-      this.currentDate.getFullYear(),
-      this.currentDate.getMonth()
-    );
+    this.weeks = this.generateWeeks(this.currentDate.getFullYear(), this.currentDate.getMonth());
   }
 
-  generateWeeks(year: number, month: number): any[][] {
-    const weeks: any[][] = [];
+  generateWeeks(year: number, month: number): (CalendarDay | null)[][] {
+    const weeks: (CalendarDay | null)[][] = [];
     const firstDay = new Date(year, month, 1);
     const lastDay = new Date(year, month + 1, 0);
-    let currentWeek: any[] = [];
+    let currentWeek: (CalendarDay | null)[] = [];
 
-    // Ajustar el primer día para que inicie en lunes
     const firstDayIndex = (firstDay.getDay() + 6) % 7;
-
     for (let i = 0; i < firstDayIndex; i++) {
       currentWeek.push(null);
     }
@@ -73,12 +71,12 @@ export class Calendar2Component implements OnInit {
   getMonthName(month: number): string {
     const monthNames = [
       'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December',
+      'July', 'August', 'September', 'October', 'November', 'December'
     ];
     return monthNames[month];
   }
 
-  isToday(day: any): boolean {
+  isToday(day: CalendarDay | null): boolean {
     if (!day) return false;
     const today = new Date();
     return (
@@ -88,12 +86,13 @@ export class Calendar2Component implements OnInit {
     );
   }
 
-  isCurrentMonth(day: any): boolean {
-    return day && day.fullDate.getMonth() === this.currentDate.getMonth();
+  isCurrentMonth(day: CalendarDay | null): boolean {
+    return day !== null && day.fullDate.getMonth() === this.currentDate.getMonth();
   }
 
-  getEvent(day: any): string | null {
-    return day ? this.events[this.formatDate(day.fullDate)] || null : null;
+  getEvent(day: CalendarDay | null): string | null {
+    if (!day) return null;
+    return this.events.get(this.formatDate(day.fullDate)) || null;
   }
 
   formatDate(date: Date): string {
@@ -104,16 +103,17 @@ export class Calendar2Component implements OnInit {
   }
 
   prevMonth(): void {
-    this.currentDate.setMonth(this.currentDate.getMonth() - 1);
+    this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 1, 1);
     this.updateCalendar();
   }
 
   nextMonth(): void {
-    this.currentDate.setMonth(this.currentDate.getMonth() + 1);
+    this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 1);
     this.updateCalendar();
   }
 
-  onDayClick(day: any): void {
+  onDayClick(day: CalendarDay | null): void {
+    console.log(day)
     if (day && !day.isWeekend) {
       const event = this.getEvent(day);
       if (event) {

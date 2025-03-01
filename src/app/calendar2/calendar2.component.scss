@@ -198,6 +198,16 @@
     /* Margen inferior para separar del evento */
 }
 
+.disabled {
+    color: red;
+    background-color: #666666;
+    pointer-events: none;
+  }
+
+  .empty {
+    background-color: #eee;
+  }
+
 /* Estilo para los eventos */
 .event {
     font-size: 12px;

@@ -37,6 +37,7 @@
             *ngFor="let day of week"
             [class.today]="isToday(day)"
             [class.empty]="!day"
+            [class.disabled]="day?.isWeekend"
             (click)="onDayClick(day)"
           >
             <span class="day-number">{{ day?.date }}</span>
