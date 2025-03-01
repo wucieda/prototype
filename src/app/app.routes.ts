@@ -6,6 +6,7 @@ import { TablaComponent } from './tabla/tabla.component';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { Calendar2Component } from './calendar2/calendar2.component';
+import { EditableTableComponent } from './editable-table/editable-table.component';
 
 export const routes: Routes = [
     {
@@ -43,6 +44,12 @@ export const routes: Routes = [
       path: 'calendar2',
       component: Calendar2Component,
       data: { breadcrumb: 'calendar2' }
+    },
+    {
+      path: 'edit-table',
+      component: EditableTableComponent,
+      data: { breadcrumb: 'edit-table' }
     }
+
 
   ];

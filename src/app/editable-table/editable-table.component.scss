@@ -1,0 +1,105 @@
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  
+    table {
+      width: 100%;
+      max-width: 800px;
+      border-collapse: collapse;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      font-family: Arial, sans-serif;
+  
+      th, td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+      }
+  
+      th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+      }
+  
+      td {
+        background-color: #fff;
+  
+        input {
+          width: 100%;
+          border: none;
+          padding: 5px;
+          font-size: 14px;
+          background: transparent;
+          outline: none;
+        }
+      }
+  
+      tr {
+        transition: background-color 0.2s ease-in-out;
+  
+        &.new-row {
+          background-color: #e0f7fa;
+          border: 2px solid #00acc1;
+        }
+  
+        &.modified-row {
+          background-color: #e3f2fd;
+          border: 2px solid #1976d2;
+        }
+  
+        &.deleted-row {
+          background-color: #ffebee;
+          border: 2px solid #d32f2f;
+          text-decoration: line-through;
+        }
+      }
+    }
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+  
+    button {
+      padding: 10px 15px;
+      font-size: 14px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: background 0.2s ease-in-out;
+  
+      &.add-btn {
+        background-color: #4caf50;
+        color: white;
+  
+        &:hover {
+          background-color: #388e3c;
+        }
+      }
+  
+      &.save-btn {
+        background-color: #2196f3;
+        color: white;
+  
+        &:hover {
+          background-color: #1976d2;
+        }
+      }
+  
+      &.delete-btn {
+        background-color: transparent;
+        color: red;
+        font-size: 18px;
+        border: none;
+        cursor: pointer;
+  
+        &:hover {
+          color: darkred;
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,28 @@
+<div class="button-group">
+    <button class="add-btn" (click)="addRow()">➕ New Row</button>
+    <button class="save-btn" (click)="saveChanges()">💾 Save Changes</button>
+</div>
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (row of data; track row.id) {
+            <tr [ngClass]="{
+              'new-row': row.status === 'new',
+              'modified-row': row.status === 'modified',
+              'deleted-row': row.status === 'deleted'
+            }">
+                <td><input type="text" [(ngModel)]="row.name" (input)="markModified(row)"></td>
+                <td><input type="text" [(ngModel)]="row.value" (input)="markModified(row)"></td>
+                <td><button class="delete-btn" (click)="markForDeletion(row)">Delete</button></td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
