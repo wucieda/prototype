@@ -55,21 +55,24 @@ export class EditableTableComponent {
 
   ngOnInit() {
 
-    this.data = JSON.parse(JSON.stringify(this.datasets[4]));
+    this.data = JSON.parse(JSON.stringify(this.datasets[4])).map((row: TableRow) => ({
+      ...row,
+      status: row.status as 'new' | 'modified' | 'deleted' | 'unchanged' | undefined
+    }));
+
     this.columns = Object.keys(this.data[0] || {}).filter(key => key !== 'id' && key !== 'status');
     //if (this.datasets.length > 0) {
-      //this.loadDataset(0);
+    //this.loadDataset(0);
     //}
   }
 
-  loadDataset(event: EventTarget) {
-    //console.log(event);
-     //const datasetIndex = Number(index);
-     //if (!isNaN(datasetIndex) && datasetIndex >= 0 && datasetIndex < this.datasets.length) {
-      // this.data = JSON.parse(JSON.stringify(this.datasets[datasetIndex]));
-       //this.columns = Object.keys(this.data[0] || {}).filter(key => key !== 'id' && key !== 'status');
-    // }
+  loadDataset(index: number) {
+    this.data = JSON.parse(JSON.stringify(this.datasets[index])).map((row: TableRow) => ({
+      ...row,
+      status: row.status as 'new' | 'modified' | 'deleted' | 'unchanged' | undefined
+    }));
   }
+
 
   addRow() {
     const newRow: TableRow = { id: Date.now(), status: 'new' };
