@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 
 interface TableRow {
   id?: number;
-  name: string;
-  value: string;
+  [key: string]: any;
   status?: 'new' | 'modified' | 'deleted' | 'unchanged';
 }
 
@@ -17,17 +16,65 @@ interface TableRow {
   imports: [FormsModule, CommonModule]
 })
 export class EditableTableComponent {
-  initialData: TableRow[] = [
-    { id: 1, name: 'Item 1', value: 'Value 1', status: 'unchanged' },
-    { id: 2, name: 'Item 2', value: 'Value 2', status: 'unchanged' }
+  datasets: TableRow[][] = [
+    // Dataset 1: 2 columnas
+    [
+      { id: 1, Name: "Alice", Age: 25, status: "unchanged" },
+      { id: 2, Name: "Bob", Age: 30, status: "unchanged" }
+    ],
+
+    // Dataset 2: 3 columnas
+    [
+      { id: 1, Product: "Laptop", Price: 1200, Stock: 10, status: "unchanged" },
+      { id: 2, Product: "Mouse", Price: 25, Stock: 50, status: "unchanged" }
+    ],
+
+    // Dataset 3: 4 columnas
+    [
+      { id: 1, Country: "USA", Capital: "Washington", Population: 331, Continent: "North America", status: "unchanged" },
+      { id: 2, Country: "France", Capital: "Paris", Population: 67, Continent: "Europe", status: "unchanged" }
+    ],
+
+    // Dataset 4: 5 columnas
+    [
+      { id: 1, Employee: "John Doe", Department: "IT", Role: "Developer", Salary: 5000, Experience: 3, status: "unchanged" },
+      { id: 2, Employee: "Jane Smith", Department: "HR", Role: "Manager", Salary: 6000, Experience: 5, status: "unchanged" }
+    ],
+
+    // Dataset 5: 7 columnas
+    [
+      { id: 1, Model: "Tesla Model S", Year: 2022, Price: 79999, Range: "390 miles", Battery: "100 kWh", Seats: 5, status: "unchanged" },
+      { id: 2, Model: "Ford Mustang", Year: 2021, Price: 55000, Range: "300 miles", Battery: "80 kWh", Seats: 4, status: "unchanged" }
+    ]
   ];
-  data: TableRow[] = JSON.parse(JSON.stringify(this.initialData));
+
+  data: TableRow[] = [];
+  columns: string[] = [];
   notification: string | null = null;
   notificationType: string = '';
 
+  ngOnInit() {
+
+    this.data = JSON.parse(JSON.stringify(this.datasets[4]));
+    this.columns = Object.keys(this.data[0] || {}).filter(key => key !== 'id' && key !== 'status');
+    //if (this.datasets.length > 0) {
+      //this.loadDataset(0);
+    //}
+  }
+
+  loadDataset(event: EventTarget) {
+    //console.log(event);
+     //const datasetIndex = Number(index);
+     //if (!isNaN(datasetIndex) && datasetIndex >= 0 && datasetIndex < this.datasets.length) {
+      // this.data = JSON.parse(JSON.stringify(this.datasets[datasetIndex]));
+       //this.columns = Object.keys(this.data[0] || {}).filter(key => key !== 'id' && key !== 'status');
+    // }
+  }
+
   addRow() {
-    //this.data.push({ name: '', value: '', status: 'new' });
-    this.data.push({ id: Date.now(), name: '', value: '', status: 'new' });
+    const newRow: TableRow = { id: Date.now(), status: 'new' };
+    this.columns.forEach(col => newRow[col] = '');
+    this.data.push(newRow);
   }
 
   markModified(row: TableRow) {
@@ -50,12 +97,12 @@ export class EditableTableComponent {
     console.log('Deleting:', toDelete);
 
     this.data = this.data.filter(row => row.status !== 'deleted').map(row => ({ ...row, status: 'unchanged' }));
-    this.showNotification("Changes saved successfully!",'success');
+    this.showNotification("Changes saved successfully!", 'success');
   }
 
   resetChanges() {
-    this.data = JSON.parse(JSON.stringify(this.initialData));
-    this.showNotification("Changes have been reset.",'info');
+    this.data = JSON.parse(JSON.stringify(this.datasets[0]));
+    this.showNotification("Changes have been reset.", 'info');
   }
 
   showNotification(message: string, type: 'success' | 'error' | 'info') {

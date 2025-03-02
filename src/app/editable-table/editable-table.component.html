@@ -1,14 +1,22 @@
+<div class="controls">
+    <label for="dataset">Choose dataset:</label>
+    <select id="dataset">
+        @for (dataset of datasets; track $index) {
+        <option [value]="$index">Dataset {{ $index + 1 }}</option>
+        }
+    </select>
+</div>
 <div class="button-group">
     <button class="add-btn" (click)="addRow()">➕ New Row</button>
     <button class="save-btn" (click)="saveChanges()">💾 Save Changes</button>
     <button class="reset-btn" (click)="resetChanges()">🔄 Reset</button>
 </div>
+
 <div class="table-container">
     <table>
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Value</th>
+                <th *ngFor="let col of columns">{{ col }}</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -19,8 +27,9 @@
               'modified-row': row.status === 'modified',
               'deleted-row': row.status === 'deleted'
             }">
-                <td><input type="text" [(ngModel)]="row.name" (input)="markModified(row)"></td>
-                <td><input type="text" [(ngModel)]="row.value" (input)="markModified(row)"></td>
+                <td *ngFor="let col of columns">
+                    <input type="text" [(ngModel)]="row[col]" (input)="markModified(row)">
+                </td>
                 <td><span class="delete-btn" (click)="markForDeletion(row)" title="Delete">❌</span></td>
             </tr>
             }
@@ -28,6 +37,7 @@
     </table>
 </div>
 
+
 <div *ngIf="notification" class="toast {{notificationType}}">
     <span>{{ notification }}</span>
-  </div>
+</div>
