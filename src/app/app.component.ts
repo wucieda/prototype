@@ -1,30 +1,16 @@
-import { Component} from '@angular/core';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { NzModalModule } from 'ng-zorro-antd/modal'; // Importa el módulo
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CustomModalComponent } from './components/custom-modal/custom-modal.component';
 import { RouterOutlet } from '@angular/router';
-
+import { HeaderComponent } from './header/header.component';
+import { Header2Component } from "./header2/header2.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, NzModalModule, RouterOutlet], // Importa el módulo aquí
+  imports: [CommonModule, RouterOutlet, HeaderComponent, Header2Component], // Importa el módulo aquí
   templateUrl: 'app.component.html',
 })
 export class AppComponent {
-  constructor(private modalService: NzModalService) {}
+  constructor( ) { }
 
-  openModal(): void {
-    this.modalService.create({
-      nzTitle: 'Título del Modal',
-      nzContent: CustomModalComponent,
-      nzFooter: [
-        {
-          label: 'Cerrar',
-          onClick: () => this.modalService.closeAll(),
-        },
-      ],
-    });
-  }
 }

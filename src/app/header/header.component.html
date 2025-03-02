@@ -1,7 +1,25 @@
 <header class="header">
-    <h1>Mi Aplicación</h1>
-    <nav>
-      <a routerLink="/">Inicio</a>
-      <a routerLink="/about">Acerca de</a>
-    </nav>
-  </header>
+
+  <!-- Menú de navegación -->
+  <nav class="navbar">
+    <ul class="nav-list">
+      <li class="nav-item" [class.active]="activeLink === 'messages'">
+        <a href="#" class="nav-link" (click)="setActive('messages')">My Messages</a>
+      </li>
+      <li class="nav-item" [class.active]="activeLink === 'applications'">
+        <a href="#" class="nav-link" (click)="setActive('applications')">Applications</a>
+      </li>
+      <li class="nav-item" [class.active]="activeLink === 'accounts'">
+        <a href="#" class="nav-link" (click)="setActive('accounts')">Accounts</a>
+      </li>
+      <li class="nav-item" [class.active]="activeLink === 'tools'">
+        <a href="#" class="nav-link" (click)="setActive('tools')">My Tools</a>
+      </li>
+      <li class="nav-item" [class.active]="activeLink === 'help'">
+        <a href="#" class="nav-link" (click)="setActive('help')">Help</a>
+      </li>
+    </ul>
+  </nav>
+
+
+</header>

@@ -1,0 +1,25 @@
+<header class="header">
+    <!-- Menú de navegación -->
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li class="nav-item" [class.active]="activeLink === 'dashboard'">
+                <a class="nav-link" (click)="setActive('dashboard')">Dashboard</a>
+            </li>
+            <li class="nav-item" [class.active]="activeLink === 'applications'">
+                <a class="nav-link" (click)="setActive('applications')">Applications</a>
+            </li>
+            <li class="nav-item" [class.active]="activeLink === 'accounts'">
+                <a class="nav-link" (click)="setActive('accounts')">Accounts</a>
+            </li>
+            <li class="nav-item" [class.active]="activeLink === 'moratorium'">
+                <a class="nav-link" (click)="setActive('moratorium')">Moratorium</a>
+            </li>
+            <li class="nav-item" [class.active]="activeLink === 'messages'">
+                <a class="nav-link" (click)="setActive('messages')">Messages</a>
+            </li>
+            <li class="nav-item" [class.active]="activeLink === 'watchlist'">
+                <a class="nav-link" (click)="setActive('watchlist')">Watchlist</a>
+            </li>
+        </ul>
+    </nav>
+</header>

@@ -104,7 +104,7 @@ export class EditableTableComponent {
   }
 
   resetChanges() {
-    this.data = JSON.parse(JSON.stringify(this.datasets[0]));
+    this.data = JSON.parse(JSON.stringify(this.datasets[4]));
     this.showNotification("Changes have been reset.", 'info');
   }
 

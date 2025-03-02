@@ -1,11 +1,76 @@
+/* Estilos generales del header */
 .header {
-    position: fixed; /* Fija el header en la parte superior */
-    top: 0;          /* Lo coloca en la parte superior */
-    left: 0;         /* Lo alinea a la izquierda */
-    width: 100%;     /* Ocupa el ancho completo de la página */
-    background-color: #333; /* Color de fondo */
-    color: white;    /* Color del texto */
-    padding: 10px 20px; /* Espaciado interno */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para efecto visual */
-    z-index: 1000;   /* Asegura que el header esté por encima de otros elementos */
-  }
+  display: flex;
+  flex-direction: column; /* Alinear contenido verticalmente */
+  align-items: flex-start; /* Alinear todo a la izquierda */
+  padding: 1rem 2rem;
+  background-color: #074D72; /* Fondo azul oscuro */
+  color: #ffffff; /* Texto blanco para contraste */
+  border-bottom: 1px solid #e0e0e0; /* Borde inferior gris claro */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Estilos para el logo y título */
+.logo h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #ffffff; /* Texto blanco */
+}
+
+.logo p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #cccccc; /* Texto gris claro */
+}
+
+/* Estilos para el menú de navegación */
+.navbar {
+  width: 100%; /* Ocupar todo el ancho disponible */
+  margin-top: 1rem; /* Espacio entre el logo y el menú */
+}
+
+.navbar .nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1.5rem; /* Espacio entre elementos del menú */
+}
+
+.nav-item {
+  position: relative; /* Para posicionar la barra naranja */
+  height: 50px; /* Altura del menú más alta */
+  display: flex;
+  align-items: center; /* Centrar verticalmente el texto */
+  padding-bottom: 12px; /* Espacio para la raya naranja */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #ffffff; /* Texto blanco */
+  font-weight: 500;
+  transition: color 0.3s ease;
+  padding: 0.5rem 0; /* Espaciado interno para mayor altura */
+}
+
+.nav-link:hover {
+  color: #ff8c42; /* Color naranja al hacer hover */
+}
+
+/* Barra naranja debajo del menú seleccionado */
+.nav-item.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -17px; /* Mover la raya debajo del menú */
+  width: 100%;
+  height: 6px;
+  background-color: #ff8c42; /* Color naranja */
+}
+
+/* Estilos para la sección de derechos de autor */
+.copyright {
+  font-size: 0.75rem;
+  color: #cccccc; /* Texto gris claro */
+  margin-top: 1rem; /* Espacio entre el menú y el copyright */
+}
