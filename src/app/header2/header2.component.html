@@ -1,6 +1,11 @@
 <header class="header">
-    <!-- Menú de navegación -->
-    <nav class="navbar">
+    <!-- Botón de menú desplegable (solo para móviles) -->
+    <button class="menu-toggle" (click)="toggleMenu()">
+        <span class="menu-icon">&#9776;</span> <!-- Icono de hamburguesa -->
+    </button>
+
+    <!-- Menú de navegación (lado izquierdo) -->
+    <nav class="navbar" [class.active]="isMenuOpen">
         <ul class="nav-list">
             <li class="nav-item" [class.active]="activeLink === 'dashboard'">
                 <a class="nav-link" (click)="setActive('dashboard')">Dashboard</a>
@@ -22,4 +27,43 @@
             </li>
         </ul>
     </nav>
+
+    <!-- Dropdowns en el lado derecho -->
+    <div class="dropdowns">
+        <!-- Dropdown de País -->
+        <select class="dropdown">
+            <option value="" disabled selected>País</option>
+            <option value="es">España</option>
+            <option value="mx">México</option>
+            <option value="ar">Argentina</option>
+            <option value="co">Colombia</option>
+        </select>
+
+        <!-- Dropdown de Ciudad -->
+        <select class="dropdown">
+            <option value="" disabled selected>Ciudad</option>
+            <option value="madrid">Madrid</option>
+            <option value="barcelona">Barcelona</option>
+            <option value="valencia">Valencia</option>
+            <option value="sevilla">Sevilla</option>
+        </select>
+
+        <!-- Dropdown de Región -->
+        <select class="dropdown">
+            <option value="" disabled selected>Región</option>
+            <option value="andalucia">Andalucía</option>
+            <option value="cataluna">Cataluña</option>
+            <option value="valencia">Comunidad Valenciana</option>
+            <option value="madrid">Madrid</option>
+        </select>
+
+        <!-- Dropdown de Fecha -->
+        <select class="dropdown">
+            <option value="" disabled selected>Fecha</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+        </select>
+    </div>
 </header>

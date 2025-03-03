@@ -1,75 +1,232 @@
 /* Estilos generales del header */
 .header {
     display: flex;
-    justify-content: flex-start; /* Alinear a la izquierda */
+    justify-content: space-between;
+    /* Alinear elementos a los extremos */
     align-items: center;
     padding: 1rem 2rem;
-    background-color: #1F2937; /* Fondo gris oscuro moderno */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Borde sutil */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  }
-  
-  /* Estilos para el menú de navegación */
-  .navbar .nav-list {
+    background-color: #B83333;
+    /* Fondo rojo moderno */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    /* Borde sutil */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Sombra sutil */
+}
+
+/* Botón de menú desplegable (solo para móviles) */
+.menu-toggle {
+    display: none;
+    /* Ocultar por defecto */
+    background: none;
+    border: none;
+    color: #FFFFFF;
+    /* Color del icono */
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.menu-icon {
+    display: block;
+}
+
+/* Menú de navegación (lado izquierdo) */
+.navbar {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+    /* Alinear a la izquierda */
+}
+
+.nav-list {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 2rem; /* Espacio más amplio entre elementos */
-  }
-  
-  .nav-item {
+    /* gap: 0.5rem; Espacio entre elementos del nav-bar */
+}
+
+.nav-item {
     position: relative;
-    height: 60px; /* Altura más alta para un look moderno */
+    height: 60px;
+    /* Altura más alta para un look moderno */
     display: flex;
     align-items: center;
-    padding: 0 1rem; /* Padding horizontal para cubrir más espacio */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Transición suave */
-  }
-  
-  .nav-link {
+    padding: 0 1rem;
+    /* Padding horizontal para cubrir más espacio */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    /* Transición suave */
+}
+
+.nav-link {
     text-decoration: none;
-    color: #FFFFFF; /* Texto blanco */
-    font-weight: 600; /* Texto más grueso */
-    font-size: 1rem; /* Tamaño de fuente moderno */
+    color: #FFFFFF;
+    /* Texto blanco */
+    font-weight: 600;
+    /* Texto más grueso */
+    font-size: 1rem;
+    /* Tamaño de fuente moderno */
     transition: color 0.3s ease;
-  }
-  
-  /* Estilos para el hover */
-  .nav-item:hover {
-    background-color: rgba(144, 224, 239, 0.1); /* Fondo sutil al hacer hover */
-  }
-  
-  /* Barra del active item */
-  .nav-item.active::after {
+}
+
+/* Estilos para el hover */
+.nav-item:hover {
+    background-color: rgba(144, 224, 239, 0.1);
+    /* Fondo sutil al hacer hover */
+}
+
+/* Barra del active item */
+.nav-item.active::after {
     content: '';
     position: absolute;
     left: 0;
-    bottom: -17px; /* Mover la raya debajo del menú */
+    bottom: -17px;
+    /* Mover la raya debajo del menú */
     width: 100%;
     height: 5px;
-    background-color: #00B4D8; /* Color cian vibrante */
-    border-radius: 2px; /* Bordes redondeados para un look moderno */
-  }
-  
-  /* Estilos para el estado activo (botón presionado) */
-  .active .nav-item {
+    background-color: #4ECDC4;
+    /* Nuevo color cian suave */
+    border-radius: 2px;
+    /* Bordes redondeados para un look moderno */
+}
+
+/* Estilos para el estado activo (botón presionado) */
+.active .nav-item {
     position: relative;
-    top: 2px; /* Mueve el elemento ligeramente hacia abajo */
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra interna más pronunciada */
-    background-color: rgba(85, 177, 0, 0.1); /* Fondo sutil para el botón activo */
-    border-radius: 4px; /* Bordes redondeados */
-    padding: 0.5rem 1rem; /* Espaciado interno para resaltar el botón */
-  }
-  
-  .active .nav-link {
-    color: #00B4D8; /* Color cian vibrante para el enlace activo */
+    top: 2px;
+    /* Mueve el elemento ligeramente hacia abajo */
+    box-shadow: inset 0 4px 8px rgba(184, 51, 51, 0.3);
+    /* Sombra interna más pronunciada */
+    background-color: rgba(78, 205, 196, 0.1);
+    /* Fondo sutil con el nuevo cian */
+    border-radius: 4px;
+    /* Bordes redondeados */
+    padding: 0.5rem 1rem;
+    /* Espaciado interno para resaltar el botón */
+}
+
+.active .nav-link {
+    color: #4ECDC4;
+    /* Nuevo color cian suave para el enlace activo */
     font-weight: bold;
-  }
-  
-  /* Desactiva el efecto de hover en el estado activo */
-  .active .nav-item:hover {
-    background-color: rgba(0, 180, 216, 0.1); /* Mantiene el fondo del estado activo */
-    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.3); /* Mantiene la sombra del estado activo */
-    top: 2px; /* Mantiene el movimiento del estado activo */
-  }
+}
+
+/* Desactiva el efecto de hover en el estado activo */
+.active .nav-item:hover {
+    background-color: rgba(78, 205, 196, 0.1);
+    /* Mantiene el fondo del estado activo */
+    box-shadow: inset 0 4px 8px rgba(184, 51, 51, 0.3);
+    /* Mantiene la sombra del estado activo */
+    top: 2px;
+    /* Mantiene el movimiento del estado activo */
+}
+
+/* Estilos para los dropdowns (lado derecho) */
+.dropdowns {
+    display: flex;
+    gap: 1rem;
+    /* Espacio entre los dropdowns */
+    align-items: center;
+    /* Alinear verticalmente con el nav-bar */
+    margin-left: 2rem;
+    /* Espacio entre el nav-bar y los dropdowns */
+}
+
+.dropdown {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Borde sutil */
+    color: #FFFFFF;
+    /* Texto blanco */
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    /* Bordes redondeados */
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    appearance: none;
+    /* Eliminar el estilo predeterminado del navegador */
+    -webkit-appearance: none;
+    /* Para compatibilidad con Safari */
+    -moz-appearance: none;
+    /* Para compatibilidad con Firefox */
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFFFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    /* Flecha personalizada */
+    background-repeat: no-repeat;
+    background-position: right 0.7rem top 50%;
+    /* Posición de la flecha */
+    background-size: 0.65rem auto;
+    /* Tamaño de la flecha */
+    padding-right: 2.5rem;
+    /* Espacio para la flecha */
+}
+
+.dropdown:hover {
+    background-color: rgba(144, 224, 239, 0.1);
+    /* Fondo sutil al hacer hover */
+    border-color: rgba(144, 224, 239, 0.3);
+    /* Borde más claro al hacer hover */
+}
+
+.dropdown:focus {
+    outline: none;
+    /* Eliminar el borde predeterminado al enfocar */
+    border-color: #4ECDC4;
+    /* Nuevo color cian suave al enfocar */
+}
+
+/* Estilos para las opciones dentro del select */
+.dropdown option {
+    background-color: #B83333;
+    /* Fondo rojo moderno */
+    color: #FFFFFF;
+    /* Texto blanco */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+        /* Mostrar el botón de menú en móviles */
+    }
+
+    .navbar {
+        display: none;
+        /* Ocultar el menú por defecto en móviles */
+        flex-direction: column;
+        width: 100%;
+        background-color: #B83333;
+        /* Fondo rojo moderno */
+        position: absolute;
+        top: 70px;
+        /* Ajustar según la altura del header */
+        left: 0;
+        z-index: 1000;
+        /* Asegurar que el menú esté por encima de otros elementos */
+    }
+
+    .navbar.active {
+        display: flex;
+        /* Mostrar el menú cuando está activo */
+    }
+
+    .nav-list {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .nav-item {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem 0;
+        /* Espaciado vertical para móviles */
+        text-align: center;
+        /* Centrar el texto */
+    }
+
+    .dropdowns {
+        display: none;
+        /* Ocultar dropdowns en móviles */
+    }
+}
