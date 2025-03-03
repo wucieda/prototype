@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; // Importa FormsModule para usar [(ngModel)]
 
 export interface CalendarDay {
   date: number;
@@ -9,9 +10,9 @@ export interface CalendarDay {
 
 @Component({
   selector: 'app-calendar2',
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule], // Agrega FormsModule aquí
   templateUrl: './calendar2.component.html',
-  styleUrls: ['./calendar2.component.scss'] // Corrección aquí
+  styleUrls: ['./calendar2.component.scss']
 })
 export class Calendar2Component implements OnInit {
   events: Map<string, string> = new Map();
@@ -21,9 +22,33 @@ export class Calendar2Component implements OnInit {
   weekDays: string[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   weeks: (CalendarDay | null)[][] = [];
 
+  // Nuevas propiedades para los selectores de mes y año
+  selectedMonth: number = this.currentDate.getMonth();
+  selectedYear: number = this.currentDate.getFullYear();
+  months: string[] = [
+    'January', 'February', 'March', 'April', 'May', 'June',
+    'July', 'August', 'September', 'October', 'November', 'December'
+  ];
+  years: number[] = this.generateYears(2020, 2030); // Genera años desde 2020 hasta 2030
+
   ngOnInit(): void {
     this.events.set(this.formatDate(new Date(2025, 3, 5)), '<span>Evento Aleatorio 1</span>');
     this.events.set(this.formatDate(new Date(2025, 3, 10)), '<span>Evento Aleatorio 2</span>');
+    this.updateCalendar();
+  }
+
+  // Genera un array de años
+  generateYears(start: number, end: number): number[] {
+    const years = [];
+    for (let year = start; year <= end; year++) {
+      years.push(year);
+    }
+    return years;
+  }
+
+  // Actualiza el calendario cuando cambia el mes o el año
+  onMonthOrYearChange(): void {
+    this.currentDate = new Date(this.selectedYear, this.selectedMonth, 1);
     this.updateCalendar();
   }
 
@@ -104,16 +129,20 @@ export class Calendar2Component implements OnInit {
 
   prevMonth(): void {
     this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() - 1, 1);
+    this.selectedMonth = this.currentDate.getMonth();
+    this.selectedYear = this.currentDate.getFullYear();
     this.updateCalendar();
   }
 
   nextMonth(): void {
     this.currentDate = new Date(this.currentDate.getFullYear(), this.currentDate.getMonth() + 1, 1);
+    this.selectedMonth = this.currentDate.getMonth();
+    this.selectedYear = this.currentDate.getFullYear();
     this.updateCalendar();
   }
 
   onDayClick(day: CalendarDay | null): void {
-    console.log(day)
+    console.log(day);
     if (day && !day.isWeekend) {
       const event = this.getEvent(day);
       if (event) {
