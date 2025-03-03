@@ -19,4 +19,8 @@ export class Header2Component {
     this.isMenuOpen = !this.isMenuOpen; // Alternar el estado del menú
   }
 
+  refreshPage() {
+    window.location.reload(); // Recargar la página
+  }
+
 }

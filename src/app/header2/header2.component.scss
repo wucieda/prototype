@@ -4,7 +4,7 @@
     justify-content: space-between;
     /* Alinear elementos a los extremos */
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem;
     background-color: #B83333;
     /* Fondo rojo moderno */
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -80,7 +80,7 @@
     content: '';
     position: absolute;
     left: 0;
-    bottom: -17px;
+    bottom: -9px;
     /* Mover la raya debajo del menú */
     width: 100%;
     height: 5px;
@@ -182,6 +182,45 @@
     /* Fondo rojo moderno */
     color: #FFFFFF;
     /* Texto blanco */
+}
+
+/* Estilos para el botón de refresh */
+.refresh-button {
+    background-color: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Borde sutil */
+    color: #FFFFFF;
+    /* Texto blanco */
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    /* Bordes redondeados */
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* Espacio entre el ícono y el texto (si lo hubiera) */
+}
+
+.refresh-button:hover {
+    background-color: rgba(144, 224, 239, 0.1);
+    /* Fondo sutil al hacer hover */
+    border-color: rgba(144, 224, 239, 0.3);
+    /* Borde más claro al hacer hover */
+}
+
+.refresh-button:focus {
+    outline: none;
+    /* Eliminar el borde predeterminado al enfocar */
+    border-color: #4ECDC4;
+    /* Borde cian suave al enfocar */
+}
+
+.refresh-icon {
+    font-size: 1.2rem;
+    /* Tamaño del ícono */
 }
 
 /* Estilos responsivos */
