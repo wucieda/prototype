@@ -1,0 +1,57 @@
+<div class="expediente-container">
+  <form [formGroup]="expedienteForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="idExpediente">ID Expediente</label>
+      <input id="idExpediente" formControlName="idExpediente" type="text">
+    </div>
+    <div class="form-group">
+      <label for="numeroExpediente">Número de Expediente</label>
+      <input id="numeroExpediente" formControlName="numeroExpediente" type="text">
+    </div>
+    <div class="form-group">
+      <label for="tipoExpediente">Tipo de Expediente</label>
+      <input id="tipoExpediente" formControlName="tipoExpediente" type="text">
+    </div>
+    <div class="form-group">
+      <label for="fechaCreacion">Fecha de Creación</label>
+      <input id="fechaCreacion" formControlName="fechaCreacion" type="date">
+    </div>
+    <div class="form-group">
+      <label for="estado">Estado</label>
+      <input id="estado" formControlName="estado" type="text">
+    </div>
+    <button type="submit">Guardar</button>
+  </form>
+
+  <div class="tabla-container">
+    <h3>Tabla 1</h3>
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let key of tabla1Datos[0] | keyvalue">{{ key.key }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of tabla1Datos">
+          <td *ngFor="let key of row | keyvalue">{{ key.value }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="tabla-container">
+    <h3>Tabla 2</h3>
+    <table>
+      <thead>
+        <tr>
+          <th *ngFor="let key of tabla2Datos[0] | keyvalue">{{ key.key }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let row of tabla2Datos">
+          <td *ngFor="let key of row | keyvalue">{{ key.value }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

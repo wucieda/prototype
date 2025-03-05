@@ -1,53 +1,54 @@
-<div class="calendar">
-  <!-- Nueva sección para botones y dropdown -->
-  <div class="controls">
-    <button class="btn sync-btn">Sincronizar</button>
-    <button class="btn open-btn">Abrir</button>
-    <button class="btn section-btn">Sección</button>
-    <button class="btn global-btn">Global</button>
-    <button class="btn load-btn">Cargar</button>
+<div class="calendar-container">
+  <div class="calendar">
+    <!-- Encabezado del calendario -->
+    <div class="calendar-header">
+      <div class="navigation">
+        <span class="nav-arrow" (click)="prevMonth()">‹</span>
+        <h2>{{ currentMonth }}</h2>
+        <h3>{{ currentYear }}</h3>
+        <span class="nav-arrow" (click)="nextMonth()">›</span>
+      </div>
+    </div>
 
-    <!-- Selector de Mes -->
-    <select class="period-dropdown" [(ngModel)]="selectedMonth" (change)="onMonthOrYearChange()">
-      <option *ngFor="let month of months; let i = index" [value]="i">{{ month }}</option>
-    </select>
-
-    <!-- Selector de Año -->
-    <select class="period-dropdown" [(ngModel)]="selectedYear" (change)="onMonthOrYearChange()">
-      <option *ngFor="let year of years" [value]="year">{{ year }}</option>
-    </select>
+    <!-- Tabla del calendario -->
+    <table class="calendar-table">
+      <thead>
+        <tr>
+          <th *ngFor="let day of weekDays">{{ day }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let week of weeks">
+          <td
+            *ngFor="let day of week"
+            [class.today]="isToday(day)"
+            [class.empty]="!day"
+            [class.disabled]="day?.isWeekend"
+            (click)="onDayClick(day)"
+          >
+            <span class="day-number">{{ day?.date }}</span>
+            <div *ngIf="getEvent(day)" class="event" [innerHTML]="getEvent(day)"></div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
-  <!-- Encabezado del calendario -->
-  <div class="calendar-header">
-    <div class="navigation">
-      <span class="nav-arrow" (click)="prevMonth()">‹</span>
-      <h2>{{ currentMonth }}</h2>
-      <h3>{{ currentYear }}</h3>
-      <span class="nav-arrow" (click)="nextMonth()">›</span>
+  <!-- Panel lateral derecho con botones y detalles -->
+  <div class="side-panel">
+    <div class="day-details">
+      <h3>Detalles del Día</h3>
+      <p *ngIf="selectedDay">Fecha: {{ selectedDay?.date }} de {{ currentMonth }}</p>
+      <p *ngIf="getEvent(selectedDay)">Evento: {{ getEvent(selectedDay) }}</p>
+      <p *ngIf="!getEvent(selectedDay)">No hay eventos programados.</p>
+    </div>
+
+    <div class="controls">
+      <button class="btn sync-btn">Sincronizar</button>
+      <button class="btn open-btn">Abrir</button>
+      <button class="btn section-btn">Sección</button>
+      <button class="btn global-btn">Global</button>
+      <button class="btn load-btn">Cargar</button>
     </div>
   </div>
-
-  <!-- Tabla del calendario -->
-  <table class="calendar-table">
-    <thead>
-      <tr>
-        <th *ngFor="let day of weekDays">{{ day }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let week of weeks">
-        <td
-          *ngFor="let day of week"
-          [class.today]="isToday(day)"
-          [class.empty]="!day"
-          [class.disabled]="day?.isWeekend"
-          (click)="onDayClick(day)"
-        >
-          <span class="day-number">{{ day?.date }}</span>
-          <div *ngIf="getEvent(day)" class="event" [innerHTML]="getEvent(day)"></div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </div>

@@ -22,6 +22,8 @@ export class Calendar2Component implements OnInit {
   weekDays: string[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   weeks: (CalendarDay | null)[][] = [];
 
+  selectedDay: any = null;
+
   // Nuevas propiedades para los selectores de mes y año
   selectedMonth: number = this.currentDate.getMonth();
   selectedYear: number = this.currentDate.getFullYear();
@@ -143,6 +145,7 @@ export class Calendar2Component implements OnInit {
 
   onDayClick(day: CalendarDay | null): void {
     console.log(day);
+    this.selectedDay = day;
     if (day && !day.isWeekend) {
       const event = this.getEvent(day);
       if (event) {

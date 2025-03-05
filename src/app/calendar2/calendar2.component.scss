@@ -1,232 +1,176 @@
-/* Estilos generales del calendario */
-.calendar {
-    font-family: 'Arial', sans-serif;
-    width: 100%;
-    max-width: 800px;
-    /* Ancho máximo del calendario */
-    margin: 0 auto;
-    border: 1px solid #e0e0e0;
+/* Contenedor principal */
+.calendar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 20px;
+  }
+  
+  /* Estilos del calendario */
+  .calendar {
+    background: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff;
-    /* Fondo blanco (50%) */
-    overflow: hidden;
-}
-
-/* Estilo de la sección de controles (botones y dropdown) */
-.controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px;
-    background-color: #ffffff;
-    /* Fondo blanco (50%) */
-    border-bottom: 1px solid #e0e0e0;
-}
-
-/* Estilo de los botones */
-.btn {
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: bold;
-    color:  #F45267;
-    /* Texto blanco */
-    background-color: #ffffff;
-    /* Rojo Santander (40%) */
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-radius: 20px;
-    box-shadow: 0px 1px 3px #666666;
-}
-
-.btn:hover {
-    background-color: #cc0000;
-    color: #ffffff;
-    /* Rojo Santander más oscuro al pasar el mouse */
-}
-
-/* Estilo del dropdown */
-.period-dropdown {
-    padding: 8px 16px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #000000;
-    /* Texto negro (5%) */
-    background-color: #ffffff;
-    /* Fondo blanco (50%) */
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.period-dropdown:hover {
-    border-color: #F45267;
-    /* Borde rojo Santander al pasar el mouse */
-}
-
-/* Estilo del encabezado del calendario */
-.calendar-header {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
     text-align: center;
-    padding: 24px;
-    /* Padding del encabezado */
-    background-color: #F45267;
-    /* Rojo Santander (40%) */
-    border-bottom: 1px solid #e0e0e0;
-}
-
-.calendar-header h2 {
-    font-size: 32px;
-    /* Tamaño de fuente del mes */
-    font-weight: bold;
-    color: #ffffff;
-    /* Texto blanco para contrastar con el fondo rojo Santander */
-    margin: 0;
-}
-
-.calendar-header h3 {
-    font-size: 24px;
-    /* Tamaño de fuente del año */
-    color: #ffffff;
-    /* Texto blanco para contrastar con el fondo rojo Santander */
-    margin: 0;
-}
-
-/* Estilo de la navegación (flechas) */
-.navigation {
+    width: 600px;
+  }
+  
+  /* Encabezado del calendario */
+  .calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
-    /* Margen inferior */
-}
-
-.nav-arrow {
-    font-size: 36px;
-    /* Tamaño de fuente de las flechas */
-    font-weight: bold;
-    color: #ffffff;
-    /* Flechas blancas para contrastar con el fondo rojo Santander */
+    margin-bottom: 15px;
+  }
+  
+  .navigation {
+    display: flex;
+    align-items: center;
+  }
+  
+  .nav-arrow {
     cursor: pointer;
-    user-select: none;
-}
-
-.nav-arrow:hover {
-    color: #ffcccc;
-    /* Rojo claro al pasar el mouse */
-}
-
-/* Estilo de la tabla del calendario */
-.calendar-table {
+    font-size: 24px;
+    margin: 0 10px;
+    color: #007bff;
+  }
+  
+  .nav-arrow:hover {
+    color: #0056b3;
+  }
+  
+  /* Tabla del calendario */
+  .calendar-table {
     width: 100%;
     border-collapse: collapse;
-    table-layout: fixed;
-    /* Fijamos el layout de la tabla */
-}
-
-.calendar-table th,
-.calendar-table td {
+  }
+  
+  .calendar-table th,
+  .calendar-table td {
+    border: 1px solid #ddd;
     text-align: center;
-    padding: 12px;
-    /* Padding de las celdas */
-    border: 1px solid #e0e0e0;
-    height: 80px;
-    /* Altura fija para las celdas */
-    vertical-align: top;
-    /* Alineamos el contenido en la parte superior */
-}
-
-/* Estilo de la tabla del calendario */
-.calendar-table th {
-    background-color: #f8f7f7ee;
-    /* Fondo blanco (50%) */
-    font-weight: bold;
-    color: #F45267;
-    /* Gris más claro para los nombres de los días */
-    font-size: 18px;
-    /* Tamaño de fuente de los días de la semana */
-}
-
-.calendar-table td {
-    background-color: #ffffff;
-    /* Fondo blanco (50%) */
-    color: #333333;
-    /* Texto oscuro */
+    padding: 15px;
+    font-size: 16px;
+  }
+  
+  .calendar-table td {
     position: relative;
-    font-size: 18px;
-    /* Tamaño de fuente de los días del mes */
-}
-
-/* Estilo para los días del mes */
-.calendar-table td:not(.empty) {
+    height: 80px;
+    vertical-align: top;
     cursor: pointer;
-}
-
-.calendar-table td:not(.empty):hover {
-    background-color: #deedf2;
-    /* Azul claro (5%) al pasar el mouse */
-}
-
-/* Estilo para los días fuera del mes actual */
-.calendar-table td.empty {
-    background-color: #f9f9f9;
-    /* Fondo gris muy claro */
-    color: #cccccc;
-    /* Texto gris claro */
-}
-
-/* Estilo para el día actual */
-.calendar-table td.today {
-    background-color: #F45267;
-    /* Rojo Santander (40%) para el día actual */
-    font-weight: bold;
-    color: #ffffff;
-    /* Texto blanco */
-}
-
-/* Estilo para el número del día */
-.day-number {
-    display: block;
-    font-size: 20px;
-    /* Tamaño de fuente del número del día */
-    font-weight: bold;
-    color: #333333;
-    /* Texto oscuro */
-    margin-bottom: 4px;
-    text-align: left;
-    /* Margen inferior para separar del evento */
-}
-
-.disabled {
-    color: red;
-    background-color: #666666;
-    pointer-events: none;
   }
-
+  
+  .today {
+    background-color: #ffeb3b;
+    font-weight: bold;
+    border-radius: 50%;
+  }
+  
   .empty {
-    background-color: #eee;
+    background-color: #f5f5f5;
   }
-
-/* Estilo para los eventos */
-.event {
-    font-size: 12px;
-    /* Tamaño de fuente del evento */
-    color: #ffffff;
-    /* Texto blanco */
-    background-color: #F45267;
-    /* Rojo Santander (40%) para los eventos */
-    padding: 4px 8px;
-    /* Padding del evento */
+  
+  .disabled {
+    color: #ccc;
+  }
+  
+  .event {
+    background-color: #2196f3;
+    color: white;
+    padding: 5px;
     border-radius: 4px;
-    display: block;
-    /* Mostrar como bloque para ocupar toda la celda */
-    white-space: normal;
-    /* Permite que el texto se ajuste */
-    word-wrap: break-word;
-    /* Asegura que el texto largo no desborde */
-    max-width: 100%;
-    /* Aseguramos que no se desborde */
+    font-size: 12px;
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    right: 5px;
     text-align: center;
-    /* Centramos el texto del evento */
-}
+  }
+  
+  /* Panel lateral derecho */
+  .side-panel {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 250px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .day-details {
+    background: #f1f1f1;
+    padding: 15px;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .day-details h3 {
+    margin: 0 0 10px 0;
+  }
+  
+  .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .sync-btn {
+    background-color: #28a745;
+  }
+  
+  .sync-btn:hover {
+    background-color: #1e7e34;
+  }
+  
+  .open-btn {
+    background-color: #17a2b8;
+  }
+  
+  .open-btn:hover {
+    background-color: #117a8b;
+  }
+  
+  .section-btn {
+    background-color: #ffc107;
+    color: black;
+  }
+  
+  .section-btn:hover {
+    background-color: #d39e00;
+  }
+  
+  .global-btn {
+    background-color: #6610f2;
+  }
+  
+  .global-btn:hover {
+    background-color: #4e0bb5;
+  }
+  
+  .load-btn {
+    background-color: #dc3545;
+  }
+  
+  .load-btn:hover {
+    background-color: #a71d2a;
+  }
+  

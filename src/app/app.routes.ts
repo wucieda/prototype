@@ -10,6 +10,7 @@ import { EditableTableComponent } from './editable-table/editable-table.componen
 import { AppComponent } from './app.component';
 import { Header2Component } from './header2/header2.component';
 import { HeaderComponent } from './header/header.component';
+import { ExpedienteFormComponent } from './formulario-expediente/expediente-form.component';
 
 export const routes: Routes = [
 
@@ -58,6 +59,11 @@ export const routes: Routes = [
     path: 'header',
     component: HeaderComponent,
     data: { breadcrumb: 'header' }
+  },
+  {
+    path: 'expediente',
+    component: ExpedienteFormComponent,
+    data: { breadcrumb: 'expediente' }
   },
   {
     path: '',
