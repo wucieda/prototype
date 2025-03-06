@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule para usar [(ngModel)]
+import { ModalComponent } from '../modal/modal.component';
 
 export interface CalendarDay {
   date: number;
@@ -10,7 +11,8 @@ export interface CalendarDay {
 
 @Component({
   selector: 'app-calendar2',
-  imports: [CommonModule, FormsModule], // Agrega FormsModule aquí
+  standalone:true,
+  imports: [CommonModule, FormsModule, ModalComponent], // Agrega FormsModule aquí
   templateUrl: './calendar2.component.html',
   styleUrls: ['./calendar2.component.scss']
 })
@@ -32,6 +34,7 @@ export class Calendar2Component implements OnInit {
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
   years: number[] = this.generateYears(2020, 2030); // Genera años desde 2020 hasta 2030
+
 
   ngOnInit(): void {
     this.events.set(this.formatDate(new Date(2025, 3, 5)), '<span>Evento Aleatorio 1</span>');
@@ -152,5 +155,23 @@ export class Calendar2Component implements OnInit {
         alert(`Event on ${this.formatDate(day.fullDate)}: ${event}`);
       }
     }
+  }
+
+
+  showModal = false;
+
+  openModal() {
+    this.showModal = true;
+    console.log('Modal abierto:', this.showModal);
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+
+  onAccept() {
+    this.showModal = false;
+    console.log('Modal cerrado:', this.showModal);
+    alert('¡Acción confirmada!');
   }
 }

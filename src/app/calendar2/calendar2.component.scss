@@ -174,3 +174,23 @@
     background-color: #a71d2a;
   }
   
+
+  .container-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .open-btn-modal {
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  .open-btn-modal:hover {
+    background: #0056b3;
+  }
+  

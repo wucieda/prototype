@@ -51,4 +51,20 @@
       <button class="btn load-btn">Cargar</button>
     </div>
   </div>
+
+  <div class="container-modal">
+    <button class="open-btn-modal" (click)="openModal()">Abrir Modal</button>
+  </div>
+  
+  <app-modal
+    [isOpen]="showModal"
+    title="Confirmación"
+    (closeModal)="closeModal()"
+    (acceptModal)="onAccept()"
+  >
+    <p>¿Estás seguro de realizar esta acción?</p>
+  </app-modal>
+  
 </div>
+
+

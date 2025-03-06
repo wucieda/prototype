@@ -1,0 +1,100 @@
+/* Fondo oscuro al abrir el modal */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  /* Contenedor del modal */
+  .modal-content {
+    background: white;
+    width: 400px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    animation: slideDown 0.3s ease-in-out;
+    position: relative; /* Asegura que el contenido del modal esté bien posicionado */
+  }
+  
+  /* Animaciones */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes slideDown {
+    from { transform: translateY(-20px); }
+    to { transform: translateY(0); }
+  }
+  
+  /* Encabezado */
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Botón de cerrar */
+  .close-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    color: gray;
+  }
+  
+  .close-btn:hover {
+    color: black;
+  }
+  
+  /* Contenido del modal */
+  .modal-body {
+    font-size: 16px;
+    color: #444;
+  }
+  
+  /* Pie del modal */
+  .modal-footer {
+    margin-top: 15px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  /* Botones */
+  .btn {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .btn-cancel {
+    background: #dc3545;
+    color: white;
+  }
+  
+  .btn-cancel:hover {
+    background: #c82333;
+  }
+  
+  .btn-accept {
+    background: #28a745;
+    color: white;
+  }
+  
+  .btn-accept:hover {
+    background: #218838;
+  }
