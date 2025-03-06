@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms'; // Importa FormsModule para usar [(ngModel)]
-import { ModalComponent } from '../modal/modal.component';
 
 export interface CalendarDay {
   date: number;
@@ -11,8 +10,7 @@ export interface CalendarDay {
 
 @Component({
   selector: 'app-calendar2',
-  standalone:true,
-  imports: [CommonModule, FormsModule, ModalComponent], // Agrega FormsModule aquí
+  imports: [CommonModule, FormsModule], // Agrega FormsModule aquí
   templateUrl: './calendar2.component.html',
   styleUrls: ['./calendar2.component.scss']
 })
@@ -24,7 +22,9 @@ export class Calendar2Component implements OnInit {
   weekDays: string[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
   weeks: (CalendarDay | null)[][] = [];
 
-  selectedDay: any = null;
+  selectedDay: CalendarDay | null = null;
+  isModalOpen: boolean = false;
+  modalType: 'open' | 'publish' | 'loadFX' | null = null;
 
   // Nuevas propiedades para los selectores de mes y año
   selectedMonth: number = this.currentDate.getMonth();
@@ -34,7 +34,6 @@ export class Calendar2Component implements OnInit {
     'July', 'August', 'September', 'October', 'November', 'December'
   ];
   years: number[] = this.generateYears(2020, 2030); // Genera años desde 2020 hasta 2030
-
 
   ngOnInit(): void {
     this.events.set(this.formatDate(new Date(2025, 3, 5)), '<span>Evento Aleatorio 1</span>');
@@ -148,30 +147,46 @@ export class Calendar2Component implements OnInit {
 
   onDayClick(day: CalendarDay | null): void {
     console.log(day);
-    this.selectedDay = day;
     if (day && !day.isWeekend) {
+      this.selectedDay = day; // Almacena el día seleccionado
       const event = this.getEvent(day);
       if (event) {
         alert(`Event on ${this.formatDate(day.fullDate)}: ${event}`);
       }
+    } else {
+      this.selectedDay = null; // Si se hace clic en un día no válido, deselecciona
     }
   }
 
-
-  showModal = false;
-
-  openModal() {
-    this.showModal = true;
-    console.log('Modal abierto:', this.showModal);
+  isSelected(day: CalendarDay | null): boolean {
+    return day !== null && this.selectedDay !== null && day.fullDate.getTime() === this.selectedDay.fullDate.getTime();
   }
 
-  closeModal() {
-    this.showModal = false;
+  // Función para abrir el modal
+  openModal(type: 'open' | 'publish' | 'loadFX'): void {
+    this.modalType = type;
+    this.isModalOpen = true;
   }
 
-  onAccept() {
-    this.showModal = false;
-    console.log('Modal cerrado:', this.showModal);
-    alert('¡Acción confirmada!');
+  // Función para cerrar el modal
+  closeModal(): void {
+    this.isModalOpen = false;
+    this.modalType = null;
+  }
+
+  // Función para manejar el botón "Aceptar" o "Proceder"
+  onAccept(type: 'open' | 'publish' | 'loadFX'): void {
+    switch (type) {
+      case 'open':
+        alert(`Apertura creada el día ${this.selectedDay?.date}.`); // Lógica para "Abrir"
+        break;
+      case 'publish':
+        alert(`Publicación realizada el día ${this.selectedDay?.date}.`); // Lógica para "Publicar"
+        break;
+      case 'loadFX':
+        alert("Datos FX cargados correctamente."); // Lógica para "Cargar FX"
+        break;
+    }
+    this.closeModal();
   }
 }

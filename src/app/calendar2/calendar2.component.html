@@ -1,70 +1,104 @@
-<div class="calendar-container">
-  <div class="calendar">
-    <!-- Encabezado del calendario -->
-    <div class="calendar-header">
-      <div class="navigation">
-        <span class="nav-arrow" (click)="prevMonth()">‹</span>
-        <h2>{{ currentMonth }}</h2>
-        <h3>{{ currentYear }}</h3>
-        <span class="nav-arrow" (click)="nextMonth()">›</span>
-      </div>
+<div class="calendar">
+  <!-- Nueva sección para botones y dropdown -->
+  <div class="controls">
+    <!-- Contenedor para los botones (izquierda) -->
+    <div class="btn-container">
+      <button class="btn open-btn" [disabled]="!selectedDay" (click)="openModal('open')">Abrir</button>
+      <button class="btn section-btn" [disabled]="!selectedDay" (click)="openModal('publish')">Publicar</button>
+      <button class="btn load-btn"  (click)="openModal('loadFX')">Cargar FX</button>
     </div>
 
-    <!-- Tabla del calendario -->
-    <table class="calendar-table">
-      <thead>
-        <tr>
-          <th *ngFor="let day of weekDays">{{ day }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let week of weeks">
-          <td
-            *ngFor="let day of week"
-            [class.today]="isToday(day)"
-            [class.empty]="!day"
-            [class.disabled]="day?.isWeekend"
-            (click)="onDayClick(day)"
-          >
-            <span class="day-number">{{ day?.date }}</span>
-            <div *ngIf="getEvent(day)" class="event" [innerHTML]="getEvent(day)"></div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <!-- Contenedor para los dropdowns (derecha) -->
+    <div class="dropdown-container">
+      <!-- Selector de Mes -->
+      <select class="period-dropdown" [(ngModel)]="selectedMonth" (change)="onMonthOrYearChange()">
+        <option *ngFor="let month of months; let i = index" [value]="i">{{ month }}</option>
+      </select>
 
-  <!-- Panel lateral derecho con botones y detalles -->
-  <div class="side-panel">
-    <div class="day-details">
-      <h3>Detalles del Día</h3>
-      <p *ngIf="selectedDay">Fecha: {{ selectedDay?.date }} de {{ currentMonth }}</p>
-      <p *ngIf="getEvent(selectedDay)">Evento: {{ getEvent(selectedDay) }}</p>
-      <p *ngIf="!getEvent(selectedDay)">No hay eventos programados.</p>
-    </div>
-
-    <div class="controls">
-      <button class="btn sync-btn">Sincronizar</button>
-      <button class="btn open-btn">Abrir</button>
-      <button class="btn section-btn">Sección</button>
-      <button class="btn global-btn">Global</button>
-      <button class="btn load-btn">Cargar</button>
+      <!-- Selector de Año -->
+      <select class="period-dropdown" [(ngModel)]="selectedYear" (change)="onMonthOrYearChange()">
+        <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+      </select>
     </div>
   </div>
 
-  <div class="container-modal">
-    <button class="open-btn-modal" (click)="openModal()">Abrir Modal</button>
+<!-- Modal para "Abrir" -->
+<div class="modal-overlay" *ngIf="isModalOpen && modalType === 'open'">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Abrir</h2>
+    </div>
+    <div class="modal-body">
+      <p>¿Desea crear una apertura el día <strong>{{ selectedDay?.date }}</strong>?</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn modal-btn cancel-btn" (click)="closeModal()">Cancelar</button>
+      <button class="btn modal-btn accept-btn" (click)="onAccept('open')">Proceder</button>
+    </div>
   </div>
-  
-  <app-modal
-    [isOpen]="showModal"
-    title="Confirmación"
-    (closeModal)="closeModal()"
-    (acceptModal)="onAccept()"
-  >
-    <p>¿Estás seguro de realizar esta acción?</p>
-  </app-modal>
-  
+</div>
+
+<!-- Modal para "Publicar" -->
+<div class="modal-overlay" *ngIf="isModalOpen && modalType === 'publish'">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Publicar</h2>
+    </div>
+    <div class="modal-body">
+      <p>¿Desea publicar el día <strong>{{ selectedDay?.date }}</strong>?</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn modal-btn cancel-btn" (click)="closeModal()">Cancelar</button>
+      <button class="btn modal-btn accept-btn" (click)="onAccept('publish')">Proceder</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para "Cargar FX" -->
+<div class="modal-overlay" *ngIf="isModalOpen && modalType === 'loadFX'">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Cargar FX</h2>
+    </div>
+    <div class="modal-body">
+      <p>¿Está seguro de que desea cargar los datos FX?</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn modal-btn cancel-btn" (click)="closeModal()">Cancelar</button>
+      <button class="btn modal-btn accept-btn" (click)="onAccept('loadFX')">Aceptar</button>
+    </div>
+  </div>
 </div>
 
 
+  <!-- Encabezado del calendario -->
+  <div class="calendar-header">
+    <div class="navigation">
+      <span class="nav-arrow" (click)="prevMonth()">‹</span>
+      <h2>{{ currentMonth }}</h2>
+      <h3>{{ currentYear }}</h3>
+      <span class="nav-arrow" (click)="nextMonth()">›</span>
+    </div>
+  </div>
+
+  <table class="calendar-table">
+    <thead>
+      <tr>
+        <th *ngFor="let day of weekDays">{{ day }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let week of weeks">
+        <td *ngFor="let day of week" 
+            [class.today]="isToday(day)" 
+            [class.empty]="!day" 
+            [class.disabled]="day?.isWeekend"
+            [class.selected]="isSelected(day)" 
+            (click)="onDayClick(day)">
+          <span class="day-number">{{ day?.date }}</span>
+          <div *ngIf="getEvent(day)" class="event" [innerHTML]="getEvent(day)"></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
