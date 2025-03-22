@@ -1,0 +1,28 @@
+<table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Departamento</th>
+        <th>Salario</th>
+        <th>Edad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employees">
+        <td>{{ employee.id }}</td>
+        <td>{{ employee.name }}</td>
+        <td>{{ employee.department }}</td>
+        <td>{{ employee.salary | currency }}</td>
+        <td>{{ employee.age }}</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3"><strong>Total</strong></td>
+        <td><strong>{{ totalSalary | currency }}</strong></td>
+        <td><strong>{{ totalAge }}</strong></td>
+      </tr>
+    </tfoot>
+  </table>
+  

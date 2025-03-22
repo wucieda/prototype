@@ -1,0 +1,37 @@
+<div class="form-wrapper">
+    <h2>{{ readOnly ? 'Vista de Empleado' : 'Formulario de Empleado' }}</h2>
+
+    <button (click)="toggleReadOnly()">
+        {{ readOnly ? 'Modo Edición' : 'Modo Lectura' }}
+    </button>
+
+    <form [formGroup]="form" *ngIf="!readOnly" (ngSubmit)="onSubmit()">
+        <label>
+            Nombre:
+            <input formControlName="name" />
+        </label>
+
+        <label>
+            Edad:
+            <input type="number" formControlName="age" />
+        </label>
+
+        <label>
+            Rol:
+            <select formControlName="role">
+                <option *ngFor="let r of roles" [ngValue]="r">{{ r.label }}</option>
+            </select>
+        </label>
+
+        <button type="submit">Guardar</button>
+    </form>
+
+    <!-- Vista en modo lectura -->
+    <div *ngIf="readOnly" class="readonly-view">
+        <p><strong>Nombre:</strong> {{ form.value.name }}</p>
+        <p><strong>Edad:</strong> {{ form.value.age }}</p>
+        <p><strong>Rol:</strong> {{ form.value.role?.label }}</p>
+    </div>
+</div>
+
+<pre>{{form.value| json}}</pre>

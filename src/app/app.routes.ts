@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductsDetailComponent } from './products-detail/products-detail.component';
 import { TablaComponent } from './tabla/tabla.component';
@@ -7,13 +6,18 @@ import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { CalendarComponent } from './calendar/calendar.component';
 import { Calendar2Component } from './calendar2/calendar2.component';
 import { EditableTableComponent } from './editable-table/editable-table.component';
-import { AppComponent } from './app.component';
+
 import { Header2Component } from './header2/header2.component';
 import { HeaderComponent } from './header/header.component';
 import { ExpedienteFormComponent } from './formulario-expediente/expediente-form.component';
+import { AppComponent } from './app.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 
 export const routes: Routes = [
-
+  {
+    path: '',
+    component: AppComponent,
+  },
   {
     path: 'products',
     component: ProductsComponent,
@@ -66,10 +70,9 @@ export const routes: Routes = [
     data: { breadcrumb: 'expediente' }
   },
   {
-    path: '',
-    component: AppComponent,
-    data: { breadcrumb: 'home' }
+    path: 'reactive-form',
+    component: ReactiveFormComponent,
+    data: { breadcrumb: 'reactive-form' }
   }
-
 
 ];

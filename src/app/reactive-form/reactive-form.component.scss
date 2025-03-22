@@ -1,0 +1,53 @@
+.form-wrapper {
+    max-width: 400px;
+    margin: auto;
+    padding: 1.5rem;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+    h2 {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  
+    label {
+      display: block;
+      margin-bottom: 1rem;
+      font-weight: 500;
+  
+      input,
+      select {
+        display: block;
+        width: 100%;
+        margin-top: 0.25rem;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+      }
+    }
+  
+    button {
+      display: block;
+      width: 100%;
+      padding: 0.6rem;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 1rem;
+  
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  
+    .readonly-view {
+      p {
+        margin: 0.5rem 0;
+      }
+    }
+  }
+  

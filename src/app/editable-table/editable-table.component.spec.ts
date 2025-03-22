@@ -1,90 +1,93 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EditableTableComponent } from './editable-table.component';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { By } from '@angular/platform-browser';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
 
 describe('EditableTableComponent', () => {
   let component: EditableTableComponent;
   let fixture: ComponentFixture<EditableTableComponent>;
-
-  const mockDatasets = [
-    [
-      { id: 1, Name: 'Alice', Age: 25, status: 'unchanged' },
-      { id: 2, Name: 'Bob', Age: 30, status: 'unchanged' }
-    ],
-    [
-      { id: 1, Product: 'Laptop', Price: 1200, Stock: 10, status: 'unchanged' },
-      { id: 2, Product: 'Mouse', Price: 25, Stock: 50, status: 'unchanged' }
-    ]
-  ];
+  let messageService: NzMessageService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FormsModule, CommonModule],
-      declarations: [EditableTableComponent]
+      imports: [EditableTableComponent, FormsModule, NzTableModule, NzButtonModule, NzInputModule, NzSelectModule],
+      providers: [NzMessageService,provideAnimations()] // Agregar NzMessageService para evitar errores de inyección
     }).compileComponents();
   });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EditableTableComponent);
     component = fixture.componentInstance;
-    component.datasets = mockDatasets;
+    messageService = TestBed.inject(NzMessageService);
     fixture.detectChanges();
   });
 
-  it('should create the component', () => {
+  it('debería crear el componente', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load the first dataset on init', () => {
-    component.ngOnInit();
-    expect(component.data.length).toBe(2);
-    expect(component.columns).toEqual(['Name', 'Age']);
+  it('debería inicializar la tabla con datos', () => {
+    expect(component.table).toBeDefined();
+    expect(component.data.length).toBeGreaterThan(0);
   });
 
-  it('should load a selected dataset', () => {
-    component.loadDataset(1);
-    expect(component.data.length).toBe(2);
-    expect(component.columns).toEqual(['Product', 'Price', 'Stock']);
+  it('debería renderizar la tabla con las columnas correctas', () => {
+    fixture.detectChanges();
+    const headers = fixture.debugElement.queryAll(By.css('th'));
+    expect(headers.length).toBe(component.table.fields.length + 1); // +1 por la columna de acciones
   });
 
-  it('should add a new row', () => {
+  it('debería agregar una nueva fila cuando se hace clic en "Add Row"', () => {
+    const initialLength = component.data.length;
+    const addButton = fixture.debugElement.query(By.css('button[nzType="primary"]'));
+    addButton.nativeElement.click();
+    fixture.detectChanges();
+    expect(component.data.length).toBe(initialLength + 1);
+  });
+
+  it('debería eliminar una fila cuando se hace clic en "Delete"', () => {
+    const initialLength = component.data.length;
+    component.deleteRow(component.data[0]);
+    fixture.detectChanges();
+    expect(component.data.length).toBe(initialLength - 1);
+  });
+
+  it('debería marcar una fila como modificada al cambiar un valor', () => {
+    const input = fixture.debugElement.query(By.css('input input'));
+    input.nativeElement.value = 'Nuevo Valor';
+    input.nativeElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
+    expect(component.data[0].action).toBe('UPDATE_INSERT');
+  });
+
+  it('debería mostrar notificación al agregar una fila', () => {
+    spyOn(messageService, 'success');
     component.addRow();
-    expect(component.data.length).toBe(3);
-    expect(component.data[2].status).toBe('new');
+    expect(messageService.success).toHaveBeenCalledWith('New row added');
   });
 
-  it('should mark a row as modified', () => {
-    const row = component.data[0];
-    component.markModified(row);
-    expect(row.status).toBe('modified');
+  it('debería mostrar notificación al eliminar una fila', () => {
+    spyOn(messageService, 'success');
+    component.deleteRow(component.data[0]);
+    expect(messageService.success).toHaveBeenCalledWith('Row deleted');
   });
 
-  it('should mark a row for deletion', () => {
-    const row = component.data[0];
-    component.markForDeletion(row);
-    expect(row.status).toBe('deleted');
-  });
-
-  it('should save changes', () => {
-    spyOn(console, 'log');
-    component.data[0].status = 'modified';
+  it('debería mostrar notificación al guardar cambios', () => {
+    spyOn(messageService, 'success');
     component.saveChanges();
-    expect(console.log).toHaveBeenCalledWith('Modifying:', [component.data[0]]);
+    expect(messageService.success).toHaveBeenCalledWith('Changes saved successfully');
   });
 
-  it('should reset changes', () => {
-    component.data[0].status = 'modified';
+  it('debería mostrar notificación al resetear los cambios', () => {
+    spyOn(messageService, 'warning');
     component.resetChanges();
-    expect(component.data[0].status).toBe('unchanged');
-  });
-
-  it('should show notification', () => {
-    jasmine.clock().install();
-    component.showNotification('Test message', 'success');
-    expect(component.notification).toBe('Test message');
-    jasmine.clock().tick(3001);
-    expect(component.notification).toBeNull();
-    jasmine.clock().uninstall();
+    expect(messageService.warning).toHaveBeenCalledWith('Changes reset');
   });
 });
