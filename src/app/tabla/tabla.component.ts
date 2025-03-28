@@ -7,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports:[CommonModule,FormsModule],
   templateUrl: './tabla.component.html',
-  styleUrls: ['./tabla.component.css']
+  styleUrls: ['./tabla.component.scss']
 })
 export class TablaComponent {
   // Datos de ejemplo
