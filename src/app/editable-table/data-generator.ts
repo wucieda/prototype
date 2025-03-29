@@ -43,7 +43,8 @@ export class DataGenerator {
       data.push({
         rowId: `row-${i}`,
         action: 'NONE',
-        values: rowValues
+        values: rowValues,
+        status: 'none' // Inicialmente todas las filas son nuevas
       });
     }
 

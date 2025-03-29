@@ -39,7 +39,7 @@ interface TableRow {
   ]
 })
 export class EditableTableComponent {
-  title='';
+  title = '';
 
   table: Table; // Definimos la tabla dinámica
   data: Data[]; // Datos de la tabla
@@ -51,9 +51,8 @@ export class EditableTableComponent {
   constructor(private message: NzMessageService) {
     // Generar tabla y datos automáticamente
     this.table = DataGenerator.generateTable('empleados');
-    this.data = DataGenerator.generateData(this.table, 5);
+    this.data = DataGenerator.generateData(this.table, 8); // Generar 8 filas de datos
 
-    
   }
 
   // Mostrar notificaciones
@@ -63,34 +62,41 @@ export class EditableTableComponent {
     setTimeout(() => this.notification = null, 3000);
   }
 
-  // Agregar una nueva fila vacía
+  /** 🟢 Agregar una nueva fila */
   addRow() {
     const emptyRow: Data = {
       rowId: Date.now().toString(),
-      action: 'UPDATE_INSERT',
+      action: 'UPDATE_INSERT', // Indica que es nueva
+      status: 'new', // 🟢 Marcar como nueva fila
       values: this.table.fields.map(field => field.type === 'number' ? 0 : '')
     };
-    this.data.push(emptyRow);
+    this.data.unshift(emptyRow);
     this.showNotification('New row added', 'success');
   }
 
-  // Marcar fila como modificada
+  /** 🔵 Marcar fila como modificada */
   markModified(row: Data) {
-    row.action = 'UPDATE_INSERT';
+    if (row.status !== 'new') {
+      row.action = 'UPDATE_INSERT'; // Cambia el estado a "actualizar insertar"
+      row.status = 'modified'; // 🔵 Cambia el estado a "modificado"
+
+    }
   }
 
-  // Eliminar una fila
+  /** ❌ Marcar fila como eliminada */
   deleteRow(row: Data) {
-    this.data = this.data.filter(r => r !== row);
+    row.action = 'DELETE';
+    row.status = 'deleted'; // 🔴 Marcar fila para eliminar
+    //this.data = this.data.filter(r => r !== row);
     this.showNotification('Row deleted', 'error');
   }
 
-  // Guardar cambios (simulación)
+  /** 💾 Guardar cambios */
   saveChanges() {
     this.showNotification('Changes saved successfully', 'success');
   }
 
-  // Resetear datos a su estado original
+  /** 🔄 Resetear cambios */
   resetChanges() {
     this.data = DataGenerator.generateData(this.table, 5);
     this.showNotification('Changes reset', 'warning');

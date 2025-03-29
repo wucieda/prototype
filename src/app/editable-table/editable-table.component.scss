@@ -18,144 +18,125 @@
 }
 
 .table-container {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-  
-    table {
-      width: 80%;
-      border-collapse: collapse;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-      background: white;
-      font-family: Arial, sans-serif;
-  
-      th, td {
-        border: 1px solid #d1d1d1;
-        padding: 8px;
-        text-align: left;
-      }
-  
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+
+  .ant-table-wrapper {
+    width: 90%;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .ant-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  /* Encabezado oscuro con texto blanco */
+  .ant-table-thead {
+    tr {
       th {
-        background: #f4f4f4;
+        background: #2d3b4d !important;
+        color: #ffffff !important;
         font-weight: bold;
-      }
-  
-      td input {
-        width: 100%;
+        text-align: left;
+        padding: 12px;
+        font-size: 16px;
         border: none;
-        outline: none;
-        font-size: 14px;
-        padding: 5px;
-        background: transparent;
       }
-  
-      tr {
-        transition: background 0.2s ease-in-out;
-      }
-  
-      .new-row {
-        background: #d8fcd8;
-      }
-  
-      .modified-row {
-        background: #e6f7ff;
-      }
-  
-      .deleted-row {
-        background: #ffe6e6;
-        text-decoration: line-through;
-        opacity: 0.6;
-      }
-    }
-  }
-  
-  .button-group {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 15px;
-  
-    button {
-      padding: 8px 12px;
-      font-size: 14px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.2s ease-in-out;
-    }
-  
-    .add-btn {
-      background: #4caf50;
-      color: white;
-  
-      &:hover {
-        background: #45a049;
-      }
-    }
-  
-    .save-btn {
-      background: #008cba;
-      color: white;
-  
-      &:hover {
-        background: #007bb5;
-      }
-    }
-  
-    .reset-btn {
-      background: #ff9800;
-      color: white;
-  
-      &:hover {
-        background: #e68900;
-      }
-    }
-  }
-  
-  .delete-btn {
-    cursor: pointer;
-    user-select: none;
-    font-size: 18px;
-    display: inline-block;
-    color: red;
-    transition: transform 0.2s ease-in-out;
-  
-    &:hover {
-      transform: scale(1.2);
     }
   }
 
-  /* Toast Notification */
-  .toast {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 12px 20px;
-    border-radius: 5px;
+  .ant-table-thead .ant-table-cell {
+    background-color: green;
+  }
+
+  /* Estilo general de las filas */
+  .ant-table-tbody>tr {
+    transition: background 0.2s ease-in-out;
+  }
+
+  .ant-table-tbody>tr:hover {
+    background-color: #e8f0ff;
+  }
+
+  /* Alternar colores de filas */
+  .ant-table-tbody>tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+
+  .ant-table-tbody>tr:nth-child(even) {
+    background-color: #f4f4f4;
+  }
+
+  /* Estilos dinámicos para los estados de la fila */
+  .new {
+    background: #d8fcd8 !important;
+    /* Verde */
+  }
+
+  .modified {
+    background: #e6f7ff !important;
+    /* Azul */
+  }
+
+  .deleted {
+    background: #ffe6e6 !important;
+    /* Rojo */
+    text-decoration: line-through;
+    opacity: 0.6;
+  }
+
+  /* Estilo para celdas */
+  .ant-table-tbody>tr>td {
+    padding: 8px;
+    font-size: 16px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* Estilo para los inputs dentro de las celdas (Tipo Excel) */
+  .cell-input {
+    width: 100%;
+    border: none;
+    outline: none;
     font-size: 14px;
-    color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    animation: fadeInOut 3s ease-in-out;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-  
-    &.success {
-      background-color: #28a745;
-    }
-  
-    &.error {
-      background-color: #dc3545;
-    }
-  
-    &.info {
-      background-color: #007bff;
-    }
+    padding: 5px;
+    background: transparent;
+    transition: background 0.3s ease;
   }
-  
-  @keyframes fadeInOut {
-    0% { opacity: 0; transform: translateY(-10px); }
-    10% { opacity: 1; transform: translateY(0); }
-    90% { opacity: 1; transform: translateY(0); }
-    100% { opacity: 0; transform: translateY(-10px); }
+
+  /* Cuando el input está enfocado */
+  .cell-input:focus {
+    background-color: #ffffff;
+    box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
+    border-radius: 3px;
   }
-  
+
+  /* Estilo para los select dentro de la tabla */
+  .cell-input select {
+    width: 100%;
+    padding: 5px;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+  }
+
+  /* Acciones */
+  .action-cell {
+    text-align: center;
+  }
+
+  .delete-icon {
+    color: #a020f0;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+
+  .delete-icon:hover {
+    color: #ff0000;
+  }
+}

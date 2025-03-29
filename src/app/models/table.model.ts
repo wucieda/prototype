@@ -23,4 +23,5 @@ export interface Data {
     rowId: string, //el id de la fila es un string
     action: 'NONE' | 'UPDATE_INSERT' | 'DELETE', //registro de la accion que se va a realizar, por defecto NONE y cambiara si se hacen modificaciones en la fila
     values: any[] // los valores con los que estara cargara la fila
+    status: 'none' | 'new' | 'modified' | 'deleted' //estado de la fila, puede ser nueva, modificada o eliminada
 }

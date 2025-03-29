@@ -3,34 +3,44 @@
     <button nz-button nzType="default" (click)="saveChanges()">💾 Save Changes</button>
     <button nz-button nzType="dashed" (click)="resetChanges()">🔄 Reset</button>
 </div>
+<div class="table-container">
+    <nz-table #basicTable [nzData]="data" [nzBordered]="true" [nzSize]="'middle'" class="table">
+        @if(table.fields.length > 0) {
+        <thead>
+            <tr>
+                <th *ngFor="let field of table.fields">{{ field.idDesc }}</th>
 
-<nz-table #basicTable [nzData]="data" [nzBordered]="true" [nzSize]="'middle'">
-    <thead *ngIf="table.fields.length > 0">
-        <tr>
-            <th *ngFor="let field of table.fields">{{ field.idDesc }}</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody *ngIf="data.length > 0">
-        <tr *ngFor="let row of data">
-            <td *ngFor="let field of table.fields; let i = index">
-                <ng-container *ngIf="field.catalog.length > 0; else textInput">
-                    <nz-select [(ngModel)]="row.values[i]" (ngModelChange)="markModified(row)">
-                        <nz-option *ngFor="let option of field.catalog" [nzValue]="option.id"
-                            [nzLabel]="option.descId"></nz-option>
-                    </nz-select>
-                </ng-container>
-                <ng-template #textInput>
-                    <input [(ngModel)]="row.values[i]" (ngModelChange)="markModified(row)">
-                </ng-template>
-            </td>
-            <td>
-                <button nz-button nzType="text" nzShape="circle" (click)="deleteRow(row)">
-                    <i nz-icon nzType="delete" nzTheme="outline"></i>
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</nz-table>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        }
+
+        @if (data.length > 0 ) {
+        <tbody>
+            <tr *ngFor="let row of data" [class]="row.status">
+                <td *ngFor="let field of table.fields; let i = index">
+
+                    @if (field.catalog.length > 0) {
+                    <select [(ngModel)]="row.values[i]" (ngModelChange)="markModified(row)"  class="cell-input">
+                        <option *ngFor="let option of field.catalog" [ngValue]="option.id">
+                            {{ option.descId }}
+                        </option>
+                    </select>
+                    }@else {
+                    <input [(ngModel)]="row.values[i]" (ngModelChange)="markModified(row)"  class="cell-input">
+                    }
+
+                </td>
+                <td>
+                    <button nz-button nzType="text" nzShape="circle" (click)="deleteRow(row)">❌
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        }
+
+    </nz-table>
+</div>
+
 
 <nz-alert *ngIf="notification" [nzType]="notificationType" [nzMessage]="notification" nzShowIcon></nz-alert>
