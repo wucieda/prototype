@@ -1,155 +1,175 @@
-
-
-<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
-    <div class="form-container">
-        <!-- Información Personal -->
-        <div class="form-section">
-            <h3>Información Personal</h3>
-            <div class="form-group">
-                <label for="firstName">Nombre:</label>
-                <input id="firstName" formControlName="firstName">
-            </div>
-
-            <div class="form-group">
-                <label for="lastName">Apellido:</label>
-                <input id="lastName" formControlName="lastName">
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input id="email" formControlName="email" type="email">
-            </div>
-
-            <div class="form-group">
-                <label for="age">Edad:</label>
-                <input id="age" formControlName="age" type="number">
-            </div>
-        </div>
-
-         <!-- Información Personal -->
-         <div class="form-section">
-            <h3>Información Personal</h3>
-            <div class="form-group">
-                <label for="firstName">Nombre:</label>
-                <input id="firstName" formControlName="firstName">
-            </div>
-
-            <div class="form-group">
-                <label for="lastName">Apellido:</label>
-                <input id="lastName" formControlName="lastName">
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input id="email" formControlName="email" type="email">
-            </div>
-
-            <div class="form-group">
-                <label for="age">Edad:</label>
-                <input id="age" formControlName="age" type="number">
-            </div>
-        </div>
-         <!-- Información Personal -->
-         <div class="form-section">
-            <h3>Información Personal</h3>
-            <div class="form-group">
-                <label for="firstName">Nombre:</label>
-                <input id="firstName" formControlName="firstName">
-            </div>
-
-            <div class="form-group">
-                <label for="lastName">Apellido:</label>
-                <input id="lastName" formControlName="lastName">
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input id="email" formControlName="email" type="email">
-            </div>
-
-            <div class="form-group">
-                <label for="age">Edad:</label>
-                <input id="age" formControlName="age" type="number">
-            </div>
-        </div>
-         <!-- Información Personal -->
-         <div class="form-section">
-            <h3>Información Personal</h3>
-            <div class="form-group">
-                <label for="firstName">Nombre:</label>
-                <input id="firstName" formControlName="firstName">
-            </div>
-
-            <div class="form-group">
-                <label for="lastName">Apellido:</label>
-                <input id="lastName" formControlName="lastName">
-            </div>
-
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input id="email" formControlName="email" type="email">
-            </div>
-
-            <div class="form-group">
-                <label for="age">Edad:</label>
-                <input id="age" formControlName="age" type="number">
-            </div>
-        </div>
-        <!-- Detalles del Trabajo -->
-        <div class="form-section">
-            <h3>Detalles del Trabajo</h3>
-            <div class="form-group">
-                <label for="position">Puesto:</label>
-                <input id="position" formControlName="position">
-            </div>
-
-            <div class="form-group">
-                <label for="department">Departamento:</label>
-                <input id="department" formControlName="department">
-            </div>
-
-            <div class="form-group">
-                <label for="salary">Salario:</label>
-                <input id="salary" formControlName="salary" type="number">
-            </div>
-
-            <div class="form-group">
-                <label for="hireDate">Fecha de Contratación:</label>
-                <input id="hireDate" formControlName="hireDate" type="date">
-            </div>
-        </div>
-
-        <!-- Dirección -->
-        <div class="form-section">
-            <h3>Dirección</h3>
-            <div formGroupName="address">
-                <div class="form-group">
-                    <label for="street">Calle:</label>
-                    <input id="street" formControlName="street">
-                </div>
-
-                <div class="form-group">
-                    <label for="city">Ciudad:</label>
-                    <input id="city" formControlName="city">
-                </div>
-
-                <div class="form-group">
-                    <label for="state">Estado:</label>
-                    <input id="state" formControlName="state">
-                </div>
-
-                <div class="form-group">
-                    <label for="zip">Código Postal:</label>
-                    <input id="zip" formControlName="zip">
-                </div>
-            </div>
-        </div>
+<!-- employee-form.component.html -->
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-container">
+    <h2>Employee Information</h2>
+    <label>
+      First Name:
+      <input formControlName="firstName" />
+    </label>
+    <label>
+      Last Name:
+      <input formControlName="lastName" />
+    </label>
+    <label>
+      Email:
+      <input formControlName="email" type="email" />
+    </label>
+  
+    <!-- Projects Table -->
+    <h3>Projects</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Start</th>
+          <th>End</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects.controls; index as i" [formGroupName]="i">
+          <td>{{ project.value.name }}</td>
+          <td>{{ project.value.description }}</td>
+          <td>{{ project.value.startDate }}</td>
+          <td>{{ project.value.endDate }}</td>
+          <td>
+            <button type="button" (click)="openProjectModal(i)">Edit</button>
+            <button type="button" (click)="removeProject(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" (click)="openProjectModal()">Add Project</button>
+  
+    <!-- Certifications Table -->
+    <h3>Certifications</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Issuer</th>
+          <th>Year</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cert of certifications.controls; index as i" [formGroupName]="i">
+          <td>{{ cert.value.name }}</td>
+          <td>{{ cert.value.issuer }}</td>
+          <td>{{ cert.value.year }}</td>
+          <td>
+            <button type="button" (click)="openCertModal(i)">Edit</button>
+            <button type="button" (click)="removeCert(i)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" (click)="openCertModal()">Add Certification</button>
+  
+    <br /><br />
+    <button type="submit">Submit</button>
+  </form>
+  
+  <!-- Project Modal -->
+  <div class="modal" *ngIf="showProjectModal">
+    <div class="modal-content">
+      <h3>{{ selectedProjectIndex === null ? 'Add' : 'Edit' }} Project</h3>
+      <form #projectForm="ngForm" (ngSubmit)="saveProject(projectForm.value)">
+        <label>
+          Name:
+          <input name="name" ngModel required />
+        </label>
+        <label>
+          Description:
+          <input name="description" ngModel />
+        </label>
+        <label>
+          Start Date:
+          <input name="startDate" type="date" ngModel />
+        </label>
+        <label>
+          End Date:
+          <input name="endDate" type="date" ngModel />
+        </label>
+        <button type="submit">Save</button>
+        <button type="button" (click)="closeProjectModal()">Cancel</button>
+      </form>
     </div>
-
-    <div class="button-container">
-        <button type="submit" [disabled]="employeeForm.invalid">Enviar</button>
-        <button type="button" (click)="onReset()">Limpiar</button>
+  </div>
+  
+  <!-- Certification Modal -->
+  <div class="modal" *ngIf="showCertModal">
+    <div class="modal-content">
+      <h3>{{ selectedCertIndex === null ? 'Add' : 'Edit' }} Certification</h3>
+      <form #certForm="ngForm" (ngSubmit)="saveCert(certForm.value)">
+        <label>
+          Name:
+          <input name="name" ngModel required />
+        </label>
+        <label>
+          Issuer:
+          <input name="issuer" ngModel />
+        </label>
+        <label>
+          Year:
+          <input name="year" type="number" ngModel />
+        </label>
+        <button type="submit">Save</button>
+        <button type="button" (click)="closeCertModal()">Cancel</button>
+      </form>
     </div>
+  </div>
+has
+  <button (click)="openSelectModal()">Abrir Selección de Empleados</button>
 
 
-</form>
+  <!-- Modal con tabla + detalle + formulario -->
+<div class="modal" *ngIf="showSelectModal">
+    <div class="modal-content" style="max-width: 800px;">
+      <h3>Seleccionar Empleado</h3>
+  
+      <!-- Tabla de empleados -->
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Departamento</th>
+            <th>Rol</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of employeeList; let i = index" (click)="selectEmployee(i)" [style.cursor]="'pointer'">
+            <td>{{ emp.firstName }} {{ emp.lastName }}</td>
+            <td>{{ emp.department }}</td>
+            <td>{{ emp.role }}</td>
+          </tr>
+        </tbody>
+      </table>
+  
+      <!-- Detalle seleccionado -->
+      <div *ngIf="selectedEmployee" style="margin-top: 1rem;">
+        <h4>Empleado Seleccionado: {{ selectedEmployee.firstName }} {{ selectedEmployee.lastName }}</h4>
+  
+        <form [formGroup]="selectedEmployeeForm">
+          <label>Nombre:</label>
+          <input formControlName="firstName" />
+  
+          <label>Apellido:</label>
+          <input formControlName="lastName" />
+  
+          <label>Departamento:</label>
+          <input formControlName="department" />
+  
+          <label>Rol:</label>
+          <input formControlName="role" />
+        </form>
+      </div>
+  
+      <div style="margin-top: 1rem;">
+        <button (click)="saveSelectedEmployee()">Guardar</button>
+        <button (click)="closeSelectModal()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+  
+  

@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { ExpedienteFormComponent } from './formulario-expediente/expediente-form.component';
 import { AppComponent } from './app.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { RelationsComponent } from './relations/relations.component';
 
 export const routes: Routes = [
   {
@@ -73,6 +74,16 @@ export const routes: Routes = [
     path: 'reactive-form',
     component: ReactiveFormComponent,
     data: { breadcrumb: 'reactive-form' }
+  },
+  {
+    path: 'employee-form',
+    component: EmployeeFormComponent,
+    data: { breadcrumb: 'employee-form' }
+  },
+  {
+    path: 'relations',
+    component: RelationsComponent,
+    data: { breadcrumb: 'relations' }
   }
 
 ];

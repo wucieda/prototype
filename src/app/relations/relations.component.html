@@ -1,0 +1,51 @@
+<div class="container">
+  <h2>Gestión de Operaciones</h2>
+  <button (click)="toggleEditMode()" class="mode-toggle">
+    {{ editMode ? 'Volver a lectura' : 'Modo edición' }}
+  </button>
+
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>ID_BACK (op1)</th>
+        <th>ID_BACK (op2)</th>
+        <th>ptc</th>
+        <th *ngIf="editMode">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let entry of data; let i = index">
+        <ng-container *ngIf="editingIndex === i && editMode; else readRow">
+          <td>{{ entry.op1.id.ID_BACK }}</td>
+          <td>
+            <select [(ngModel)]="editForm.selectedIdBack">
+              <option *ngFor="let e of data" [value]="e.op2.id.ID_BACK">
+                {{ e.op2.id.ID_BACK }}
+              </option>
+            </select>
+          </td>
+          <td>
+            <input type="number" [(ngModel)]="editForm.ptc" min="0" class="ptc-input" />
+          </td>
+          <td>
+            <button (click)="saveEdit(i)" class="btn save">💾</button>
+            <button (click)="cancelEdit()" class="btn cancel">✖</button>
+          </td>
+        </ng-container>
+
+        <ng-template #readRow>
+          <td>{{ entry.op1.id.ID_BACK }}</td>
+          <td>{{ entry.op2.id.ID_BACK }}</td>
+          <td>{{ entry.ptc }}</td>
+          <td *ngIf="editMode">
+            <button (click)="editEntry(i)" class="btn edit">✎</button>
+            <button (click)="deleteEntry(i)" class="btn delete">🗑</button>
+          </td>
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
+  <div *ngIf="editMode" class="submit-container">
+    <button (click)="submitAll()" class="btn submit">Enviar al backend</button>
+  </div>
+</div>
